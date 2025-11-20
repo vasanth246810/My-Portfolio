@@ -5,18 +5,18 @@ export function Home() {
   const {ref,inView}=useInView({threshold:0.1});
 
   return (
-    <section className="px-4">
+    <section  id="home" className="px-4">
     <div className="min-vh-100 position-relative d-flex flex-column justify-content-center align-items-center text-center overflow-hidden ">
       <p ref={ref} className={`fade-in-down ${inView ? "show":""} shine common rounded-pill px-3 py-1`}>Actively Seeking Job Opportunities</p>
       <h1 ref={ref} className={`fade-in-up ${inView ? "show":""} MainHeading`}>Crafting Beautiful & Functional Web Experiences</h1>
       <h4 ref={ref} className={`fade-in-up ${inView ? "show":""} Subheading`}>Hey, I'm Vasanth S, a Full Stack Developer passionate about building performant, user-friendly, and scalable applications.</h4>
       <div ref={ref} className={`fade-in-up ${inView ? "show":""} d-flex gap-4 mt-4`}>
-        <a href="#" className=" d-flex gap-2 Connect common rounded-pill">
+        <a href="#contact" className=" d-flex gap-2 Connect common rounded-pill">
           <span className="rotated-emoji">👋</span>
           Let's Connect
         </a>
-        <a href="#" className="d-flex gap-2 Resume common rounded-pill">My Resume
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20"><path fill="#f9f5f5ff" d="m9 16.172l-6.071-6.071l-1.414 1.414L10 20l.707-.707l7.778-7.778l-1.414-1.414L11 16.172V0H9z"/></svg>
+        <a href="/Vasanth_Resume.pdf" className="d-flex gap-2 Resume common rounded-pill">My Resume
+          <svg className="mt-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20"><path fill="#f9f5f5ff" d="m9 16.172l-6.071-6.071l-1.414 1.414L10 20l.707-.707l7.778-7.778l-1.414-1.414L11 16.172V0H9z"/></svg>
         </a>
       </div>
       {/* Curved section */}

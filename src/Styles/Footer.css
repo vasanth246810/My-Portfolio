@@ -1,0 +1,42 @@
+.footer-container {
+  padding: 20px 0;
+  color: white;
+  text-align: center;
+  border:1px solid white
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 15px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #007bff; 
+  transform: scale(1.1);
+}
+
+.footer-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.email-link {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.email-link:hover {
+  color: #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .social-icons a {
+    margin: 0 10px;
+  }
+  .footer-text {
+    font-size: 12px;
+  }
+}

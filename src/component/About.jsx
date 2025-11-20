@@ -37,7 +37,7 @@ export default function About() {
 
 
   return (
-    <section className="px-4 py-5">
+    <section id="about" className="px-4 py-5">
     <div className="min-vh-100 text-white position-relative font-base AboutSection">
       <div className="container py-5" style={{maxWidth:"900px"}}>
         <h4 className="text-center mb-2 fs-6 text-light" style={{maxWidth:"none"}}>GET TO KNOW ME</h4>
@@ -75,7 +75,7 @@ export default function About() {
 
             <div ref={ref} className={`fade-in-up-right ${inView ? "show" : ""} d-flex justify-content-center gap-4 align-items-center text-secondary`}>
               <MapPin size={18} />
-              <span>Punjab, India</span>
+              <span>TamilNadu, India</span>
             </div>
             {/* Location */}
             {/* <div className="d-flex align-items-center justify-content-center gap-2 text-secondary">
@@ -88,12 +88,12 @@ export default function About() {
               <h2 className="h4 fw- semibold">Education</h2>
               <div className="border-bottom border-secondary d-flex justify-content-between align-items-center pb-3  mb-3">
                 <div>
-                  <h5 className="fw-semibold text-white mb-1">Banaras Hindu University</h5>
-                  <p className="text-secondary mb-0 small">Master of Computer Applications</p>
+                  <h5 className="fw-semibold text-white mb-1">Sethu Institute of Technology</h5>
+                  <p className="text-secondary mb-0 small">B.E Computer Science and Engineering</p>
                 </div>
                 <div className="text-end">
-                  <p className="text-secondary mb-0 small">2022 - 2024</p>
-                  <p className="text-white mb-0 small">CGPA: 8.1</p>
+                  <p className="text-secondary mb-0 small">2020 - 2024</p>
+                  <p className="text-white mb-0 small">CGPA: 7.8</p>
                 </div>
               </div>
 
@@ -105,15 +105,21 @@ export default function About() {
               <h2 className="h4 fw-semibold">Experience</h2>
                <div className="pb-3 mb-3 border-bottom border-secondary">
                 <div className="d-flex justify-content-between align-items-start mb-2">
-                  <h5 className="fw-semibold text-white mb-0">Freelance Full-Stack Developer</h5>
-                  <p className="text-secondary small mb-0">Feb 2025 - Present</p>
+                  <h5 className="fw-semibold text-white mb-0">Full-Stack Developer</h5>
+                  <p className="text-secondary small mb-0">Jul 2024 - Jun 2025</p>
                 </div>
                 <ul className="text-light opacity-75 small mb-0 ps-3">
-                  <li>Built 4+ full-stack web applications using MERN stack for diverse clients.</li>
-                  <li>Delivered high-performance, responsive solutions with exceptional UX.</li>
+                  <li>Developed and maintained Python/Django modules for IsoTracker, improving system reliability for 130+ companies.</li>
+                  <li>Built and optimized RESTful APIs using Django REST Framework, improving API response time by 20%.</li>
+                  <li>Integrated third-party APIs and implemented secure authentication and session management.</li>
+                  <li>Wrote clean, modular, reusable code following Django MVT and OOP principles.</li>
+                  <li>Debugged and resolved production issues, reducing error occurrences and improving overall platform stability.</li>
+                  <li>Used Git/GitHub for version control and contributed to code reviews and unit testing.</li>
+                  <li>Improved front-end responsiveness using Bootstrap, jQuery, and AJAX, reducing page load time by 40%.</li>
+
                 </ul>
               </div>
-              <div className="pb-3 mb-3 border-bottom border-secondary">
+              {/* <div className="pb-3 mb-3 border-bottom border-secondary">
                 <div className="d-flex justify-content-between align-items-start mb-2">
                   <h5 className="fw-semibold text-white mb-0">Freelance Full-Stack Developer</h5>
                   <p className="text-secondary small mb-0">Feb 2025 - Present</p>
@@ -122,7 +128,7 @@ export default function About() {
                   <li>Built 4+ full-stack web applications using MERN stack for diverse clients.</li>
                   <li>Delivered high-performance, responsive solutions with exceptional UX.</li>
                 </ul>
-              </div>
+              </div> */}
               </div>
               <div ref={ref} className={`fade-up-left ${inView ? "show" : ""}`}>
               <h2 className="h4 fw-semibold mb-3">Tech Stack</h2>
