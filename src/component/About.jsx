@@ -133,7 +133,7 @@ export default function About() {
               <div ref={ref} className={`fade-up-left ${inView ? "show" : ""}`}>
               <h2 className="h4 fw-semibold mb-3">Tech Stack</h2>
               <div className="d-flex gap-2 flex-wrap gap-2">
-                {techStack.map((tech,i)=>(<span key={i} className={` Techstack rotate-y ${inView ? "show" : ""} gap-2 badge rounded-pill bg-secondary px-3 py-2 bg-opacity-25 border border-secondary d-flex align-items-center`}>
+                {techStack.map((tech,i)=>(<span key={i} className={` Techstack rotate-y ${inView ? "show" : ""} gap-2 badge rounded-pill px-3 py-2 bg-opacity-25 border border-secondary d-flex align-items-center`}>
                   <tech.icon style={{color:tech.color}} size={18}/>
                   {tech.name}
                 </span>))}

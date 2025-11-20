@@ -20,7 +20,7 @@ export default function Skills(){
 
     return(
     <div className="d-flex flex-column justify-content-center">
-        <p className="Skills d-flex align-items-center justify-content-center fw-bold  mb-5 text-light bg-clip-text">Skills</p>
+        <p className={`${inView ? "show" : ""} fade-in-up Skills d-flex align-items-center justify-content-center fw-bold  mb-5 text-light bg-clip-text`}>Skills</p>
         <div className=" imagediv gap-5 justify-content-center py-6 ">
             <div ref={ref} className={`imgpost rotate-y ${inView ? "show" : ""}`}><img src={html} alt="HTML"/><p>HTML</p></div>
             <div className="imgpost"><img src={css} alt="CSS"/><p>CSS</p></div>
