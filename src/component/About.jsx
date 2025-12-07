@@ -49,7 +49,9 @@ export default function About() {
                 <img 
                   src={Profile1} 
                   alt="My Profile" 
-                  style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "50%" }} 
+                  height="180"
+                  width="180"
+                  style={{ objectFit: "cover", borderRadius: "50%" }} 
                 />
               </div>
 
