@@ -10,7 +10,7 @@ export function Home() {
       <p ref={ref} className={`fade-in-down ${inView ? "show":""} shine common rounded-pill px-3 py-1`}>Actively Seeking Job Opportunities</p>
       <h1 ref={ref} className={`fade-in-up ${inView ? "show":""} MainHeading`}>Crafting Beautiful & Functional Web Experiences</h1>
       <h4 ref={ref} className={`fade-in-up ${inView ? "show":""} Subheading`}>Hey, I'm Vasanth S, a Full Stack Developer passionate about building performance, user-friendly, and scalable applications.</h4>
-      <div ref={ref} className={`fade-in-up ${inView ? "show":""} d-flex gap-4 mt-4`}>
+      <div ref={ref} className={`fade-in-up ${inView ? "show":""} homeinfo d-flex gap-4 mt-4`}>
         <a href="#contact" className=" d-flex gap-2 Connect common rounded-pill">
           <span className="rotated-emoji">👋</span>
           Let's Connect

@@ -38,7 +38,7 @@ return (
             <h2 className="ContactShine d-flex justify-content-center align-items-center mb-5 fw-semibold" >Contact Me</h2>
 
             <div ref={Large} className={` ${LargeClass} w-100 border border-secondary rounded-3 p-4`} style={{minHeight:"500px"}}>
-                <div className="d-flex align-items-center justify-content-center gap-3">
+                <div className="contactinfo d-flex align-items-center justify-content-center gap-3">
                   <a ref={rotate} href="mailto:vasanthKumar49480@gmail.com" className={`${rotateClass} w-50 d-flex flex-grow-1 align-items-center justify-content-center gap-1 py-2 border border-secondary rounded fw-medium small`}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     vasanthKumar49480@gmail.com

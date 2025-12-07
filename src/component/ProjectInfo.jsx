@@ -10,6 +10,8 @@ export const ProjectInfo=[
             title:"Eventifyy",
             description:"A full-stack event management and ticket booking app built with React and Django. It features secure user authentication for login and registration, event discovery with browse and search capabilities, and real-time ticket booking with seat availability tracking.",
             image:Profile,
+            Link:"https://eventify-event-management-system.vercel.app/",
+            GithubLink:"https://github.com/vasanth246810/Eventify-Event-Management-System",
             techStack:[{name:"ReactJs",icon:FaReact,color:"#61DAFB"},
             {name:"Django",icon:SiDjango,color:"#339933"},
             {name:"Css",icon:FaCss3Alt,color:"#61DAFB"},
@@ -29,37 +31,7 @@ export const ProjectInfo=[
             ]
         },
 
-        {
-            title:"Project 3",
-            description:"This is a description of Project 1.",
-            image:Profile,
-            techStack:[{name:"ReactJs",icon:FaReact,color:"#61DAFB"},
-            {name:"Tailwind CSS",icon:SiTailwindcss,color:"#38B2AC"},
-            {name:"Node.js",icon:FaNodeJs,color:"#339933"},
-            {name:"Express.js",icon:SiExpress,color:"#000000"},
-            ]
-        },
-        {
-            title:"Project 4",
-            description:"This is a description of Project 1.",
-            image:Profile,
-            techStack:[{name:"ReactJs",icon:FaReact,color:"#61DAFB"},
-            {name:"Tailwind CSS",icon:SiTailwindcss,color:"#38B2AC"},
-            {name:"Node.js",icon:FaNodeJs,color:"#339933"},
-            {name:"Express.js",icon:SiExpress,color:"#000000"},
-            ]
-        },
-        {
-            title:"Project 5",
-            description:"This is a description of Project 1.",
-            image:Profile,
-            techStack:[{name:"ReactJs",icon:FaReact,color:"#61DAFB"},
-            {name:"Tailwind CSS",icon:SiTailwindcss,color:"#38B2AC"},
-            {name:"Node.js",icon:FaNodeJs,color:"#339933"},
-            {name:"Express.js",icon:SiExpress,color:"#000000"},
-            ]
-        },
-
+    
     ]
 
 

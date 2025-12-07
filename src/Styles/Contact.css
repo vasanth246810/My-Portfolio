@@ -13,3 +13,13 @@ a{
   text-decoration: inherit !important;
 }
 
+
+@media (max-width: 600px) {
+    .contactinfo{
+        flex-direction: column;
+    }
+    .contactinfo a{
+        width: 100% !important;
+    }
+}
+

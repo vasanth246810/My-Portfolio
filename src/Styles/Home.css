@@ -189,7 +189,24 @@
 }
 
 
+@media (max-width: 600px) {
+    .MainHeading {
+        font-size: 2.25rem !important;
+    }
+    .Subheading{
+        font-size: 1.15rem;
+    }
+}
 
+@media (max-width: 600px) {
+    .homeinfo {
+        flex-direction: column!important;
+    }
+    .homeinfo a{
+        padding: 0.5rem 9rem!important;
+    }
+    
+}
 
 
 

@@ -38,12 +38,12 @@ export default function Projects(){
                             </span>))}
                     </div>
                     <div className='ProjectSourceMain d-flex gap-4 mt-3'>
-                        <a className='ProjectSource'>
-                            <img src={github} className="mt-1" height="14px"/>
+                        <a href={ProjectInfo.GithubLink} target='blank' className='ProjectSource'>
+                            <img src={github} alt="Project" className="mt-1" height="14px"/>
                         Github
                         </a>
-                        <a className='ProjectSource'>
-                            <img src={Link} className="mt-1" height="14px"/>
+                        <a href={ProjectInfo.Link}  target="blank" className='ProjectSource'>
+                            <img src={Link} alt="Project" className="mt-1" height="14px"/>
                         Live
                         </a>
                     </div>
