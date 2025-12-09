@@ -1,5 +1,7 @@
 .App{
   background-color: #0a0a0a;
+  font-family: Outfit,sans-serif;
+
 }
 
 .fade-right{
@@ -91,4 +93,22 @@ transition: all 1.2s ease-out;
   opacity:1;
   transform: translateY(0);
 
+}
+
+
+/* html {
+  background: yellow;
+}
+
+
+body {
+  background: white;
+}
+
+* {
+  outline: 2px solid red;
+} */
+
+body {
+  margin-top: 80px;
 }

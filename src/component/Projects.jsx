@@ -22,8 +22,8 @@ export default function Projects(){
 
             <div key={index} className="text-light border rounded-8 position-sticky my-5"style={{maxWidth:"900px", margin:"auto", minHeight:"400px" ,borderRadius:"1rem" ,top:`calc(72px + ${index * 30}px)`,backgroundColor:"#0a0a0a"}} >
                 <div className="row g-4" style={{minheight:"400px"}}>
-                 <div className="col-lg-6 p-5">
-                    <h3 className="border-bottom pb-2">{ProjectInfo.title}</h3>
+                 <div className="project col-lg-6">
+                    <h3 className=" fw-semibold border-bottom pb-2">{ProjectInfo.title}</h3>
                     <p className="mt-2">{ProjectInfo.description}</p>
                    
                     {/* <ul className="ps-0"style={{listStyle:"none"}}>
@@ -43,7 +43,7 @@ export default function Projects(){
                         Github
                         </a>
                         <a href={ProjectInfo.Link}  target="blank" className='ProjectSource'>
-                            <svg stroke="currentColor" className="mt-1" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            <svg stroke="currentColor" className="mt-1" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                         Live
                         </a>
                     </div>

@@ -28,7 +28,7 @@
 @media (max-width: 480px) {
     .imagediv {
         margin: 40px 10px;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 .imagediv img{
@@ -49,5 +49,9 @@
 }
 
 
-
+@media (max-width: 600px) {
+    .Skills{
+         font-size: 2rem !important;
+    }
+}
 

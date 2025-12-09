@@ -68,7 +68,7 @@ export default function About() {
               {/* LOCATION */}
               <div
                 ref={locationRef}
-                className={`fade-in-up-right d-flex justify-content-center gap-2 text-secondary ${locationVisible ? "show" : ""}`}
+                className={`fade-in-up-right d-flex justify-content-center gap-2  ${locationVisible ? "show" : ""}`}
               >
                 <MapPin size={18} /> Tamil Nadu, India
               </div>
@@ -78,30 +78,31 @@ export default function About() {
             <div className="col-md-7 ps-4">
 
               {/* EDUCATION */}
-              <div ref={eduRef} className={`fade-up-left mb-5 ${eduVisible ? "show" : ""}`}>
+              <div ref={eduRef} className={` education fade-up-left mb-5 ${eduVisible ? "show" : ""}`}>
                 <h2 className="h4 fw-semibold">Education</h2>
-                <div className="border-bottom border-secondary d-flex justify-content-between align-items-center pb-3 mb-3">
-                  <div>
-                    <h5 className="fw-semibold text-white mb-1">Sethu Institute of Technology</h5>
-                    <p className="text-secondary small mb-0">B.E Computer Science and Engineering</p>
-                  </div>
-                  <div className="text-end">
-                    <p className="text-secondary small mb-0">2020 - 2024</p>
-                    <p className="text-white small mb-0">CGPA: 7.8</p>
-                  </div>
+                <div className="border-bottom border-secondary pb-3 mb-3">
+                  <p className="d-flex justify-content-between align-items-center mb-0">
+                    <span className="fw-semibold text-white mb-1">Sethu Institute of Technology</span>
+                    <span className=" small mb-0">2020 - 2024</span>
+                  </p>
+                  <p className="d-flex justify-content-between mb-0">
+                    <span className=" small mb-0">B.E Computer Science and Engineering</span>
+                    <span className="text-white small mb-0">CGPA: 7.8</span>
+                  </p>
                 </div>
               </div>
 
               {/* EXPERIENCE */}
-              <div ref={expRef} className={`fade-up-left mb-5 ${expVisible ? "show" : ""}`}>
+              <div ref={expRef} className={`experience fade-up-left mb-5 ${expVisible ? "show" : ""}`}>
                 <h2 className="h4 fw-semibold">Experience</h2>
                 <div className="pb-3 border-bottom border-secondary mb-3">
-                  <div className="d-flex justify-content-between align-items-start">
-                    <h5 className="fw-semibold text-white mb-0">Full-Stack Developer</h5>
-                    <p className="text-secondary small mb-0">Jul 2024 - Jun 2025</p>
-                  </div>
+                  <h2 className="d-flex justify-content-between align-items-start">
+                    <span className="fw-semibold text-white mb-0">Full-Stack Developer</span>
+                    <span className=" small mb-0 text-light">Jul 2024 - Jun 2025</span>
+                  </h2>
 
-                  <ul className="text-light opacity-75 small mb-0 ps-3">
+
+                  <ul className=" aboutul text-light small mb-0 ps-1">
                     <li>Developed and maintained Python/Django modules.</li>
                     <li>Built REST APIs using DRF.</li>
                     <li>Improved UI responsiveness and UX.</li>

@@ -41,4 +41,150 @@
 }
 }
 
+.AboutSection h2{
+font-size: 18px;
+}
+
+.AboutSection h5{
+font-size: 18px;
+}
+
+
+.aboutul{
+    list-style-type: none;
+}
+
+.aboutul li{
+    border-left: 3px solid white;
+    margin-bottom: 3px;
+    padding-left: 14px;
+    color:white;
+
+}
+
+
+/* @media (max-width: 360px) {
+    .col-md-7{
+        padding: 0!important;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .Aboutme{
+         font-size: 2rem !important;
+    }
+} */
+
+
+
+
+/* ------------------------------
+   📌 Additional Responsive Rules
+---------------------------------*/
+
+
+/* 💻 Small Laptops & Large Tablets (≤1024px) */
+@media (max-width: 1024px) {
+    .Aboutme {
+        font-size: 2.6rem !important;
+        text-align: center;
+    }
+
+    .Profile img {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .aboutul li {
+        font-size: 0.95rem;
+    }
+}
+
+
+
+/* 📱 Tablets (≤768px) */
+@media (max-width: 768px) {
+
+    .Aboutme {
+        font-size: 2.3rem !important;
+    }
+
+    .Profile img {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+
+    .col-md-5 {
+        border-right: none !important;
+        border-bottom: 1px solid #555;
+        padding-bottom: 20px;
+    }
+
+    .col-md-7 {
+        padding-top: 20px !important;
+        padding-left: 0 !important;
+    }
+
+    .aboutul {
+        padding-left: 0;
+        margin-top: 10px;
+    }
+
+    .aboutul li {
+        width: 90%;
+        text-align: left;
+    }
+}
+
+
+
+/* 📱 Standard Mobile (≤480px) */
+@media (max-width: 480px) {
+
+    .Aboutme {
+        font-size: 1.7rem !important;
+    }
+
+    .Profile img {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .aboutul li {
+        padding-left: 10px;
+    }
+
+    .AboutSection h2 {
+        font-size: 15px !important;
+    }
+}
+
+
+/* 📱 Ultra Small Devices (≤360px) */
+@media (max-width: 360px) {
+
+    .Aboutme {
+        font-size: 1.5rem !important;
+    }
+
+    .Profile img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+
+    .col-md-7 {
+        padding: 0 !important;
+    }
+
+    .AboutSection h2 {
+        font-size: 14px !important;
+    }
+}
+
+
+
+
 

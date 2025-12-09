@@ -62,4 +62,20 @@
     transform:translateY(-5px) ;
 }
 
+.project{
+    padding: 3rem !important;
+}
+
+
+@media (max-width: 600px) {
+    .ProjectName{
+         font-size: 2rem !important;
+    }
+    .project{
+        padding: 2rem !important;
+    }
+}
+
+
+
 
