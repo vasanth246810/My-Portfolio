@@ -2,7 +2,7 @@ import React from 'react';
 import '../Styles/Navbar.css';
 export function Navbar(){
 return(
- <div>
+ <div style={{paddingTop:"30px"}}>
     <nav className='navbar d-flex justify-content-between align-items-center flex-column'>
         <ul className='navlinks'>
             <li><a href="#home" style={{textDecoration: 'none', color: 'inherit'}}>Home</a></li>

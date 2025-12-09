@@ -51,7 +51,7 @@ export function Home() {
     );
   };
   return (
-    <section id="home" className="px-4">
+    <section id="home" className="px-4"style={{marginTop:"40px"}}>
       <div className="min-vh-100 position-relative d-flex flex-column justify-content-center align-items-center text-center overflow-hidden">
         <p
           ref={ref}
