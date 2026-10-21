@@ -1,0 +1,487 @@
+/* Git Contribution Map & Activity Section */
+.git-contributions-section {
+  position: relative;
+  padding: 5rem 1rem;
+  color: #f8fafc;
+  overflow: hidden;
+}
+
+.git-contributions-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header & Badge */
+.git-contrib-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.git-contrib-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 9999px;
+  color: #00f0ff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  backdrop-filter: blur(8px);
+}
+
+.theme-emerald .git-contrib-badge {
+  background: rgba(57, 211, 83, 0.08);
+  border-color: rgba(57, 211, 83, 0.3);
+  color: #39d353;
+}
+
+.git-contrib-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.git-contrib-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Controls: Year Selector & Theme Toggle */
+.git-contrib-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.git-year-tabs {
+  display: flex;
+  gap: 0.4rem;
+  background: rgba(15, 23, 42, 0.65);
+  padding: 0.3rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.git-year-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.git-year-btn:hover {
+  color: #ffffff;
+}
+
+.git-year-btn.active {
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+}
+
+.theme-emerald .git-year-btn.active {
+  background: rgba(57, 211, 83, 0.15);
+  color: #39d353;
+  border-color: rgba(57, 211, 83, 0.35);
+  box-shadow: 0 0 12px rgba(57, 211, 83, 0.15);
+}
+
+.git-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.git-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+/* Metric Stat Cards */
+.git-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.git-stat-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.git-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 8px 24px -6px rgba(0, 240, 255, 0.15);
+}
+
+.theme-emerald .git-stat-card:hover {
+  border-color: rgba(57, 211, 83, 0.35);
+  box-shadow: 0 8px 24px -6px rgba(57, 211, 83, 0.15);
+}
+
+.git-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: rgba(0, 240, 255, 0.1);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.theme-emerald .git-stat-icon {
+  background: rgba(57, 211, 83, 0.1);
+  color: #39d353;
+  border-color: rgba(57, 211, 83, 0.25);
+}
+
+.git-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.git-stat-label {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.git-stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.git-stat-sub {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+/* Heatmap Card & Container */
+.git-heatmap-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.git-heatmap-scroll-area {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 240, 255, 0.3) rgba(15, 23, 42, 0.6);
+}
+
+.git-heatmap-scroll-area::-webkit-scrollbar {
+  height: 6px;
+}
+
+.git-heatmap-scroll-area::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 4px;
+}
+
+.git-heatmap-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.3);
+  border-radius: 4px;
+}
+
+.theme-emerald .git-heatmap-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(57, 211, 83, 0.35);
+}
+
+/* Heatmap Grid */
+.git-heatmap-inner {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 820px;
+  user-select: none;
+}
+
+/* Month Labels */
+.git-months-row {
+  display: flex;
+  margin-left: 36px;
+  margin-bottom: 8px;
+  height: 18px;
+  position: relative;
+}
+
+.git-month-label {
+  position: absolute;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Main Grid Body (Days + Columns) */
+.git-grid-body {
+  display: flex;
+  gap: 6px;
+}
+
+.git-days-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 30px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.git-day-label {
+  height: 12px;
+  font-size: 0.7rem;
+  line-height: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.git-weeks-columns {
+  display: flex;
+  gap: 4px;
+}
+
+.git-week-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Individual Heatmap Tile */
+.git-day-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease;
+  position: relative;
+}
+
+.git-day-cell:hover {
+  transform: scale(1.4);
+  z-index: 10;
+  border: 1px solid #ffffff;
+}
+
+.git-day-cell.empty {
+  visibility: hidden;
+}
+
+/* Palette - Neon Cyan (Default) */
+.theme-neon .git-day-cell[data-level="0"] {
+  background: rgba(255, 255, 255, 0.05);
+}
+.theme-neon .git-day-cell[data-level="1"] {
+  background: rgba(0, 240, 255, 0.28);
+}
+.theme-neon .git-day-cell[data-level="2"] {
+  background: rgba(0, 240, 255, 0.52);
+}
+.theme-neon .git-day-cell[data-level="3"] {
+  background: rgba(0, 240, 255, 0.78);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
+}
+.theme-neon .git-day-cell[data-level="4"] {
+  background: #00f0ff;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.65);
+}
+
+/* Palette - Classic GitHub Emerald */
+.theme-emerald .git-day-cell[data-level="0"] {
+  background: rgba(255, 255, 255, 0.06);
+}
+.theme-emerald .git-day-cell[data-level="1"] {
+  background: #0e4429;
+}
+.theme-emerald .git-day-cell[data-level="2"] {
+  background: #006d32;
+}
+.theme-emerald .git-day-cell[data-level="3"] {
+  background: #26a641;
+  box-shadow: 0 0 6px rgba(38, 166, 65, 0.3);
+}
+.theme-emerald .git-day-cell[data-level="4"] {
+  background: #39d353;
+  box-shadow: 0 0 10px rgba(57, 211, 83, 0.6);
+}
+
+/* Footer & Legend */
+.git-heatmap-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.git-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.git-legend-tiles {
+  display: flex;
+  gap: 4px;
+}
+
+.git-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #00f0ff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.git-profile-link:hover {
+  background: rgba(0, 240, 255, 0.16);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.theme-emerald .git-profile-link {
+  color: #39d353;
+  background: rgba(57, 211, 83, 0.08);
+  border-color: rgba(57, 211, 83, 0.25);
+}
+
+.theme-emerald .git-profile-link:hover {
+  background: rgba(57, 211, 83, 0.18);
+  color: #ffffff;
+}
+
+/* Floating Tooltip */
+.git-floating-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: #ffffff;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  pointer-events: none;
+  transform: translate(-50%, -120%);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 240, 255, 0.25);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.theme-emerald .git-floating-tooltip {
+  border-color: rgba(57, 211, 83, 0.45);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 12px rgba(57, 211, 83, 0.25);
+}
+
+.git-tooltip-count {
+  font-weight: 700;
+  color: #00f0ff;
+}
+
+.theme-emerald .git-tooltip-count {
+  color: #39d353;
+}
+
+.git-tooltip-date {
+  color: #94a3b8;
+  margin-left: 0.3rem;
+}
+
+/* Skeleton Loading State */
+.git-skeleton-grid {
+  display: flex;
+  gap: 4px;
+  padding: 1rem 0;
+  opacity: 0.5;
+  animation: gitPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes gitPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+  .git-contrib-title {
+    font-size: 2rem;
+  }
+  .git-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .git-heatmap-card {
+    padding: 1.25rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .git-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .git-contrib-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .git-year-tabs {
+    justify-content: center;
+  }
+}

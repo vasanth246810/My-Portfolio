@@ -61,6 +61,11 @@ export function Navbar({
             </a>
           </li>
           <li>
+            <a href="#activity" style={{ textDecoration: 'none', color: 'inherit' }}>
+              Activity
+            </a>
+          </li>
+          <li>
             <a href="#contact" style={{ textDecoration: 'none', color: 'inherit' }}>
               Contact
             </a>

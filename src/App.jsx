@@ -5,6 +5,7 @@ import { Home } from './component/Home';
 import { Navbar, DEFAULT_SETTINGS } from './component/Navbar';
 import About from './component/About';
 import Projects from './component/Projects';
+import GitContributionMap from './component/GitContributions/GitContributionMap';
 import Contact from './component/contact';
 import Footer from './component/Footer';
 import Skills from './component/Skills';
@@ -169,6 +170,7 @@ function App() {
         <About />
         <Skills settings={settings} onSettingsChange={handleSettingsChange} />
         <Projects />
+        <GitContributionMap />
         <Contact />
         <Footer />
       </div>
