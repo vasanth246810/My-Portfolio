@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../Styles/Home.css';
+import { usePortfolioData } from '../context/PortfolioDataContext';
 
 export function Home() {
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { profile } = usePortfolioData();
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  const name = profile?.name || 'Vasanth S';
+  const status = profile?.status || 'Actively Seeking Job Opportunities';
+  const roles = (profile?.roles && profile.roles.length > 0) 
+    ? profile.roles 
+    : ['Full-Stack Developer', 'Software Engineer', 'Python Developer', 'Software Developer'];
+  const leadText = profile?.leadText || 'Creating modern web applications with clean code and elegant solutions. Passionate about performance, user experience, and developer tools.';
+  const resumeUrl = profile?.resumeUrl || '/Vasanth_Resume.pdf';
 
   const TypewriterText = ({
     words, 
@@ -17,7 +27,8 @@ export function Home() {
     const [showCursor, setShowCursor] = useState(true);
 
     useEffect(() => {
-      const word = words[currentWordIndex];
+      const activeWords = (words && words.length > 0) ? words : ['Developer'];
+      const word = activeWords[currentWordIndex % activeWords.length];
       const timeout = setTimeout(() => {
         if (!isDeleting) {
           if (currentText.length < word.length) {
@@ -30,19 +41,21 @@ export function Home() {
             setCurrentText(word.slice(0, currentText.length - 1));
           } else {
             setIsDeleting(false);
-            setCurrentWordIndex((prev) => (prev + 1) % words.length);
+            setCurrentWordIndex((prev) => (prev + 1) % activeWords.length);
           }
         }
       }, isDeleting ? deletingSpeed : typingSpeed);
 
       return () => clearTimeout(timeout);
     }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseBetweenWords]);
+
     useEffect(() => {
       const cursorInterval = setInterval(() => {
         setShowCursor((prev) => !prev);
       }, 530);
       return () => clearInterval(cursorInterval);
     }, []);
+
     return (
       <span>
         {currentText}
@@ -50,25 +63,27 @@ export function Home() {
       </span>
     );
   };
+
   return (
-    <section id="home" className="px-4"style={{marginTop:"40px"}}>
+    <section id="home" className="px-4" style={{ marginTop: '40px' }}>
       <div className="min-vh-100 position-relative d-flex flex-column justify-content-center align-items-center text-center overflow-hidden">
         <p
           ref={ref}
-          className={`fade-in-down ${inView ? 'show' : ''} shine common rounded-pill px-3 py-1`}
+          className={`fade-in-down ${inView ? 'show' : ''} shine common rounded-pill px-3 py-1 d-inline-flex align-items-center`}
         >
-          Actively Seeking Job Opportunities
+          <span className="live-status-dot"></span>
+          {status}
         </p>
-        <div  className="container mt-4">
+        <div className="container mt-4">
           <div className="row justify-content-center">
             <div className="col-12 col-lg-10 col-xl-8">
               <div className="text-center">
                 <h1 ref={ref} className={`homename fade-in-down ${inView ? 'show' : ''} display-3 display-md-1 fw-bold mb-4 text-light`}>
-                  Vasanth S
+                  {name}
                   <br />
                   <span className="d-inline-block fs-2 fs-md-1 fw-normal text-light">
                     <TypewriterText
-                      words={['Full-Stack Developer', 'Software Engineer', 'Python Developer','Software Developer']}
+                      words={roles}
                       typingSpeed={120}
                       deletingSpeed={70}
                       pauseBetweenWords={2200}
@@ -77,8 +92,7 @@ export function Home() {
                   </span>
                 </h1>
                 <p className="lead text-light mx-auto" style={{ maxWidth: '42rem' }}>
-                  Creating modern web applications with clean code and elegant solutions.
-                  Passionate about performance, user experience, and developer tools.
+                  {leadText}
                 </p>
               </div>
             </div>
@@ -89,7 +103,7 @@ export function Home() {
             <span className="rotated-emoji">👋</span>
             Let's Connect
           </a>
-          <a href="/Vasanth_Resume.pdf" className="d-flex gap-2 Resume common rounded-pill">
+          <a href={resumeUrl} download className="d-flex gap-2 Resume common rounded-pill">
             My Resume
             <svg 
               className="mt-1" 
@@ -111,8 +125,8 @@ export function Home() {
             zIndex: 10,
             pointerEvents: 'none',
             marginX: 'auto',
-            marginTop: '-128px',
-            height: '384px',
+            marginTop: '30px',
+            height: '220px',
             width: '100vw',
             maxWidth: '100%',
             overflow: 'hidden',
@@ -131,7 +145,7 @@ export function Home() {
           <div
             style={{
               position: 'absolute',
-              top: '50%',
+              top: '15px',
               left: '50%',
               transform: 'translateX(-50%)',
               zIndex: 20,
@@ -152,3 +166,4 @@ export function Home() {
     </section>
   );
 }
+export default Home;
