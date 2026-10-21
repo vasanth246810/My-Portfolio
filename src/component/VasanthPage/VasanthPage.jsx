@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './VasanthPage.css';
 import CanvasOS from './CanvasOS';
 import SkillsSphere from '../SkillsSphere/SkillsSphere';
+import GitContributionMap from '../GitContributions/GitContributionMap';
 import {
   THEMES,
   SKILL_CATEGORIES as STATIC_SKILL_CATEGORIES,
@@ -274,6 +275,7 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
             <li><a href="#toolbox">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#work">Work</a></li>
+            <li><a href="#activity">Activity</a></li>
             <li><a href="#credentials">Honors</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -639,6 +641,18 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
               );
             })}
           </div>
+        </section>
+
+        {/* 6b. Git Contribution Map & Open Source */}
+        <section id="activity" className="ak-section ak-activity-section">
+          <div className="ak-sec-eyebrow-row">
+            <span className="ak-sec-eyebrow-text">OPEN SOURCE &amp; TELEMETRY</span>
+            <div className="ak-sec-eyebrow-line" />
+          </div>
+
+          <h2 className="ak-toolbox-title">Code Activity &amp; Commit Streaks</h2>
+
+          <GitContributionMap variant="showcase" parentTheme={currentTheme} />
         </section>
 
         {/* 7. Education, Awards & Writings */}

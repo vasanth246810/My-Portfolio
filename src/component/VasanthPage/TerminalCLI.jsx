@@ -38,6 +38,7 @@ export default function TerminalCLI({ onOpenCard, onSetTheme, profile, socials }
   • whoami         - show profile summary
   • ls             - list accessible desktop cards
   • open <card>    - open card (e.g. 'open arcade', 'open toolbox')
+  • activity       - view GitHub telemetry & contributions
   • theme <name>   - switch theme (or 'theme list')
   • eggs           - check your found secret easter eggs
   • xyzzy          - mystery portal
@@ -67,6 +68,19 @@ export default function TerminalCLI({ onOpenCard, onSetTheme, profile, socials }
         window.dispatchEvent(new Event('popstate'));
         newHistory.push({
           text: 'Launching Live Portfolio Content Manager (Admin CMS)...',
+          type: 'output'
+        });
+        break;
+
+      case 'activity':
+      case 'git':
+      case 'github':
+        newHistory.push({
+          text: `GitHub Activity Telemetry [@vasanth246810]:
+  • Total Contributions: 840+ in the past 12 months
+  • Status: Active daily engineering streak
+  • Profile: https://github.com/vasanth246810
+  • Heatmap: Rendered in the Activity section`,
           type: 'output'
         });
         break;

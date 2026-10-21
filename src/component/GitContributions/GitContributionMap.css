@@ -485,3 +485,184 @@
     justify-content: center;
   }
 }
+
+
+/* ==========================================================================
+   Showcase Variant (VasanthPage Integration)
+   Uses Neo-Brutalist design tokens from .aahil-system
+   ========================================================================== */
+
+.git-contributions-section.variant-showcase {
+  padding: 0;
+  color: var(--ink, #161616);
+  font-family: var(--font-family, inherit);
+}
+
+.git-contributions-section.variant-showcase .git-contributions-container {
+  max-width: 100%;
+}
+
+.git-contributions-section.variant-showcase .git-contrib-header {
+  display: none; /* Managed by VasanthPage's ak-sec-eyebrow-row & title */
+}
+
+/* Stat Cards in Showcase */
+.git-contributions-section.variant-showcase .git-stat-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #161616);
+  border-radius: var(--radius-sm, 8px);
+  box-shadow: var(--shadow-sm, 2px 2px 0px var(--shadow-color, #161616));
+  color: var(--ink, #161616);
+  backdrop-filter: none;
+}
+
+.git-contributions-section.variant-showcase .git-stat-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md, 4px 4px 0px var(--shadow-color, #161616));
+  border-color: var(--border, #161616);
+}
+
+.git-contributions-section.variant-showcase .git-stat-icon {
+  background: var(--surface-alt, rgba(0, 0, 0, 0.05));
+  color: var(--accent, #ea9d34);
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: var(--radius-sm, 8px);
+}
+
+.git-contributions-section.variant-showcase .git-stat-label {
+  color: var(--ink-subtle, #64748b);
+  font-family: var(--font-family, inherit);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.git-contributions-section.variant-showcase .git-stat-value {
+  color: var(--ink, #161616);
+  font-family: var(--font-family, inherit);
+  font-weight: 700;
+}
+
+.git-contributions-section.variant-showcase .git-stat-sub {
+  color: var(--ink-subtle, #94a3b8);
+}
+
+/* Heatmap Card in Showcase */
+.git-contributions-section.variant-showcase .git-heatmap-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #161616);
+  border-radius: var(--radius-md, 14px);
+  box-shadow: var(--shadow-md, 4px 4px 0px var(--shadow-color, #161616));
+  backdrop-filter: none;
+}
+
+/* Year Tabs in Showcase */
+.git-contributions-section.variant-showcase .git-year-tabs {
+  background: var(--surface-alt, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  border-radius: var(--radius-sm, 8px);
+}
+
+.git-contributions-section.variant-showcase .git-year-btn {
+  color: var(--ink-subtle, #64748b);
+  font-family: var(--font-family, inherit);
+}
+
+.git-contributions-section.variant-showcase .git-year-btn:hover {
+  color: var(--ink, #161616);
+}
+
+.git-contributions-section.variant-showcase .git-year-btn.active {
+  background: var(--surface, #ffffff);
+  color: var(--ink, #161616);
+  border: 1px solid var(--border, #161616);
+  box-shadow: 1px 1px 0px var(--border, #161616);
+}
+
+.git-contributions-section.variant-showcase .git-theme-toggle {
+  background: var(--surface-alt, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  color: var(--ink, #161616);
+  border-radius: var(--radius-sm, 8px);
+}
+
+.git-contributions-section.variant-showcase .git-theme-toggle:hover {
+  background: var(--surface, #ffffff);
+}
+
+.git-contributions-section.variant-showcase .git-profile-link {
+  background: var(--surface-alt, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  color: var(--ink, #161616);
+  border-radius: var(--radius-sm, 8px);
+}
+
+.git-contributions-section.variant-showcase .git-profile-link:hover {
+  background: var(--surface, #ffffff);
+  border-color: var(--border, #161616);
+  color: var(--ink, #161616);
+  box-shadow: 2px 2px 0px var(--border, #161616);
+}
+
+/* Day and Month labels in Showcase */
+.git-contributions-section.variant-showcase .git-month-label {
+  color: var(--ink-subtle, #64748b);
+  font-family: var(--font-family, inherit);
+}
+
+.git-contributions-section.variant-showcase .git-day-label {
+  color: var(--ink-subtle, #64748b);
+  font-family: var(--font-family, inherit);
+}
+
+/* Showcase Palette: Cream Light */
+.aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="0"] {
+  background: rgba(22, 22, 22, 0.08);
+}
+.aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="1"] {
+  background: rgba(234, 157, 52, 0.35);
+}
+.aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="2"] {
+  background: rgba(234, 157, 52, 0.65);
+}
+.aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="3"] {
+  background: #ea9d34;
+}
+.aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="4"] {
+  background: #161616;
+  box-shadow: 0 0 0 1px #161616;
+}
+
+/* Showcase Palette: Nord Dark */
+.aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="0"] {
+  background: rgba(236, 239, 244, 0.06);
+}
+.aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="1"] {
+  background: rgba(136, 192, 208, 0.3);
+}
+.aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="2"] {
+  background: rgba(136, 192, 208, 0.6);
+}
+.aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="3"] {
+  background: #88c0d0;
+  box-shadow: 0 0 6px rgba(136, 192, 208, 0.35);
+}
+.aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="4"] {
+  background: #ebcb8b;
+  box-shadow: 0 0 8px rgba(235, 203, 139, 0.6);
+}
+
+/* Showcase Tooltip */
+.git-contributions-section.variant-showcase .git-floating-tooltip {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #161616);
+  color: var(--ink, #161616);
+  box-shadow: var(--shadow-sm, 2px 2px 0px var(--shadow-color, #161616));
+}
+
+.git-contributions-section.variant-showcase .git-tooltip-count {
+  color: var(--ink, #161616);
+}
+
+.git-contributions-section.variant-showcase .git-tooltip-date {
+  color: var(--ink-subtle, #64748b);
+}

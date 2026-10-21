@@ -14,15 +14,24 @@ import {
 
 const USERNAME = 'vasanth246810';
 
-export default function GitContributionMap() {
+export default function GitContributionMap({ variant = 'default', parentTheme = null }) {
   const { ref: sectionRef, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const [theme, setTheme] = useState(() => {
+    if (parentTheme) {
+      return parentTheme === 'cream' ? 'emerald' : 'neon';
+    }
     if (typeof window !== 'undefined') {
       return localStorage.getItem('gh_heatmap_theme') || 'neon';
     }
     return 'neon';
   });
+
+  useEffect(() => {
+    if (parentTheme) {
+      setTheme(parentTheme === 'cream' ? 'emerald' : 'neon');
+    }
+  }, [parentTheme]);
 
   const [selectedYear, setSelectedYear] = useState('last');
   const [data, setData] = useState(null);
@@ -103,10 +112,10 @@ export default function GitContributionMap() {
   };
 
   return (
-    <section
-      id="activity"
+    <div
+      id={variant === 'showcase' ? undefined : 'activity'}
       ref={sectionRef}
-      className={`git-contributions-section theme-${theme} ${inView ? 'fade-in' : ''}`}
+      className={`git-contributions-section variant-${variant} theme-${theme} ${inView ? 'fade-in' : ''}`}
     >
       <div className="git-contributions-container">
         {/* Header */}
@@ -322,6 +331,6 @@ export default function GitContributionMap() {
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 }
