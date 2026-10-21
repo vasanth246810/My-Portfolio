@@ -11,9 +11,18 @@
    transition: transform 0.3s ease-in-out;
 }
 
-.Profile{
-    width:"180px";
-    height:"180px"
+.Profile {
+    width: 180px;
+    height: 180px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 25px rgba(208, 232, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.Profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(208, 232, 255, 0.4);
+    border-color: rgba(208, 232, 255, 0.6) !important;
 }
 
 .Aboutme{
@@ -55,11 +64,17 @@ font-size: 18px;
 }
 
 .aboutul li{
-    border-left: 3px solid white;
-    margin-bottom: 3px;
+    border-left: 3px solid rgba(255, 255, 255, 0.6);
+    margin-bottom: 6px;
     padding-left: 14px;
-    color:white;
+    color: white;
+    transition: all 0.25s ease;
+}
 
+.aboutul li:hover {
+    border-left-color: #38bdf8;
+    transform: translateX(4px);
+    color: #f0f9ff;
 }
 
 

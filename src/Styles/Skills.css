@@ -6,6 +6,8 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-size: 3.1rem !important;
+    font-family: Outfit, sans-serif;
+    font-weight: 700;
     max-width: none;
 }
 
@@ -31,21 +33,45 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
-.imagediv img{
+.imagediv img {
     height: 60px;
     width: 60px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
 }
 
-.imgpost{
+.imgpost {
     display: flex;
     flex-direction: column;
-    gap:10px
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 14px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
 
+.imgpost:hover {
+    transform: translateY(-8px);
+}
+
+.imgpost:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
 }
 
 .imgpost p {
     text-align: center;
-    color: white;
+    color: #b3b3b3;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.imgpost:hover p {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 }
 
 
@@ -55,3 +81,54 @@
     }
 }
 
+
+/* Skills View Switcher Pills */
+.skills-mode-pill {
+  background: #141414;
+  color: #a1a1aa;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.skills-mode-pill:hover {
+  background: #1e1e1e;
+  border-color: #444;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.skills-mode-pill.active {
+  background: #242424;
+  color: #ffffff;
+  border-color: #fabd2f;
+  box-shadow: 0 0 15px rgba(250, 189, 47, 0.2);
+}
+
+.skills-mode-subpill {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.skills-mode-subpill:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+  transform: translateY(-1px);
+}

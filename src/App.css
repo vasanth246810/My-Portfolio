@@ -1,13 +1,27 @@
-.App{
-  background-color: #0a0a0a;
-  font-family: Outfit,sans-serif;
-
+html {
+  scroll-behavior: smooth;
 }
 
-.fade-right{
-opacity: 0;
-clip-path: inset(0% 100% 0% 0%);
-transition: all 1.2s ease-out;
+body {
+  margin: 0;
+  padding: 0;
+  margin-top: 80px;
+  background-color: #0a0a0a;
+  overflow-x: clip;
+}
+
+.App {
+  background-color: #0a0a0a;
+  font-family: Outfit, sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* --- Scroll Animation Classes with Premium Easing --- */
+.fade-right {
+  opacity: 0;
+  clip-path: inset(0% 100% 0% 0%);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-right.show {
@@ -18,97 +32,101 @@ transition: all 1.2s ease-out;
 .fade-text {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.fade-in-up {
+
+.fade-text.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .fade-up-large {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.5s ease-out;
+  transform: translateY(35px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-up-large.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .fade-up-left {
   opacity: 0;
   transform: translate(30px, 30px);
-  transition: all 0.5s ease-out;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-up-left.show {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: none;
 }
 
 .rotate-y {
   opacity: 0;
-  transform: rotateY(45deg);
-  transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+  transform: perspective(600px) rotateY(30deg);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
 }
 
 .rotate-y.show {
   opacity: 1;
-  transform: rotateY(0deg);
+  transform: none;
 }
 
 .fade-in-up-right {
   opacity: 0;
   transform: translate(-30px, 30px);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in-up-right.show {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: none;
 }
 
-.fade-in-down{
-  opacity:0;
+.fade-in-down {
+  opacity: 0;
   transform: translateY(-20px);
-  transition: transform 0.5s ease-out;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-.fade-in-down.show{
-  opacity:1;
-  transform: translateY(0);
-
+.fade-in-down.show {
+  opacity: 1;
+  transform: none;
 }
 
-.fade-in-up{
-  opacity:0;
-  transform: translateY(20px);
-  transition: transform 0.5s ease-out;
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-
-.fade-in-up.show{
-  opacity:1;
-  transform: translateY(0);
-
+.fade-in-up.show {
+  opacity: 1;
+  transform: none;
 }
 
-
-/* html {
-  background: yellow;
+/* --- Floating & Pulse Keyframes --- */
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 7px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
 }
 
-
-body {
-  background: white;
-}
-
-* {
-  outline: 2px solid red;
-} */
-
-body {
-  margin-top: 80px;
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }

@@ -49,16 +49,37 @@
     line-height: 1.5;
 }
 
-.Connect,.Resume{
-  padding: 0.5rem 2rem;
-  font-size: 1.125rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: inherit;
+.live-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  margin-right: 8px;
+  animation: pulse-dot 2s infinite ease-in-out;
+  vertical-align: middle;
 }
 
-.Connect:hover, .Resume:hover {
-  transform: scale(1.1);
+.Connect, .Resume {
+  padding: 0.6rem 2.2rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.Connect:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(45, 126, 255, 0.4);
+  border-color: rgba(45, 126, 255, 0.6);
+}
+
+.Resume:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .rotated-emoji {
