@@ -523,9 +523,9 @@
 }
 
 .git-contributions-section.variant-showcase .git-stat-icon {
-  background: var(--surface-alt, rgba(0, 0, 0, 0.05));
-  color: var(--accent, #ea9d34);
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
+  background: rgba(46, 160, 67, 0.12);
+  color: #2ea043;
+  border: 1px solid rgba(46, 160, 67, 0.25);
   border-radius: var(--radius-sm, 8px);
 }
 
@@ -572,9 +572,9 @@
 }
 
 .git-contributions-section.variant-showcase .git-year-btn.active {
-  background: var(--surface, #ffffff);
-  color: var(--ink, #161616);
-  border: 1px solid var(--border, #161616);
+  background: #2ea043;
+  color: #ffffff;
+  border: 1px solid #238636;
   box-shadow: 1px 1px 0px var(--border, #161616);
 }
 
@@ -590,16 +590,16 @@
 }
 
 .git-contributions-section.variant-showcase .git-profile-link {
-  background: var(--surface-alt, rgba(0, 0, 0, 0.05));
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.15));
-  color: var(--ink, #161616);
+  background: rgba(46, 160, 67, 0.1);
+  border: 1px solid rgba(46, 160, 67, 0.25);
+  color: #2ea043;
   border-radius: var(--radius-sm, 8px);
 }
 
 .git-contributions-section.variant-showcase .git-profile-link:hover {
-  background: var(--surface, #ffffff);
-  border-color: var(--border, #161616);
-  color: var(--ink, #161616);
+  background: #2ea043;
+  border-color: #238636;
+  color: #ffffff;
   box-shadow: 2px 2px 0px var(--border, #161616);
 }
 
@@ -614,41 +614,42 @@
   font-family: var(--font-family, inherit);
 }
 
-/* Showcase Palette: Cream Light */
+/* Showcase Palette: Classic GitHub Emerald for Cream Light */
 .aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="0"] {
-  background: rgba(22, 22, 22, 0.08);
+  background: #ebedf0;
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 .aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="1"] {
-  background: rgba(234, 157, 52, 0.35);
+  background: #9be9a8;
 }
 .aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="2"] {
-  background: rgba(234, 157, 52, 0.65);
+  background: #40c463;
 }
 .aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="3"] {
-  background: #ea9d34;
+  background: #30a14e;
 }
 .aahil-system[data-theme="cream"] .git-contributions-section.variant-showcase .git-day-cell[data-level="4"] {
-  background: #161616;
-  box-shadow: 0 0 0 1px #161616;
+  background: #216e39;
+  box-shadow: 0 0 4px rgba(33, 110, 57, 0.35);
 }
 
-/* Showcase Palette: Nord Dark */
+/* Showcase Palette: Classic GitHub Emerald for Nord Dark */
 .aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="0"] {
   background: rgba(236, 239, 244, 0.06);
 }
 .aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="1"] {
-  background: rgba(136, 192, 208, 0.3);
+  background: #0e4429;
 }
 .aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="2"] {
-  background: rgba(136, 192, 208, 0.6);
+  background: #006d32;
 }
 .aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="3"] {
-  background: #88c0d0;
-  box-shadow: 0 0 6px rgba(136, 192, 208, 0.35);
+  background: #26a641;
+  box-shadow: 0 0 6px rgba(38, 166, 65, 0.35);
 }
 .aahil-system[data-theme="nord"] .git-contributions-section.variant-showcase .git-day-cell[data-level="4"] {
-  background: #ebcb8b;
-  box-shadow: 0 0 8px rgba(235, 203, 139, 0.6);
+  background: #39d353;
+  box-shadow: 0 0 10px rgba(57, 211, 83, 0.6);
 }
 
 /* Showcase Tooltip */

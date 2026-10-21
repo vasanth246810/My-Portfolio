@@ -18,20 +18,11 @@ export default function GitContributionMap({ variant = 'default', parentTheme = 
   const { ref: sectionRef, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const [theme, setTheme] = useState(() => {
-    if (parentTheme) {
-      return parentTheme === 'cream' ? 'emerald' : 'neon';
-    }
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('gh_heatmap_theme') || 'neon';
+      return localStorage.getItem('gh_heatmap_theme') || 'emerald';
     }
-    return 'neon';
+    return 'emerald';
   });
-
-  useEffect(() => {
-    if (parentTheme) {
-      setTheme(parentTheme === 'cream' ? 'emerald' : 'neon');
-    }
-  }, [parentTheme]);
 
   const [selectedYear, setSelectedYear] = useState('last');
   const [data, setData] = useState(null);
@@ -43,7 +34,7 @@ export default function GitContributionMap({ variant = 'default', parentTheme = 
 
   // Toggle theme and persist
   const toggleTheme = () => {
-    const nextTheme = theme === 'neon' ? 'emerald' : 'neon';
+    const nextTheme = theme === 'emerald' ? 'neon' : 'emerald';
     setTheme(nextTheme);
     if (typeof window !== 'undefined') {
       localStorage.setItem('gh_heatmap_theme', nextTheme);
@@ -157,10 +148,10 @@ export default function GitContributionMap({ variant = 'default', parentTheme = 
             type="button"
             className="git-theme-toggle"
             onClick={toggleTheme}
-            title="Toggle between Cyber Neon and Classic Emerald palettes"
+            title="Toggle between Classic GitHub Emerald and Cyber Neon palettes"
           >
             <Palette size={15} />
-            <span>Theme: {theme === 'neon' ? 'Cyber Neon' : 'Classic Emerald'}</span>
+            <span>Theme: {theme === 'emerald' ? 'GitHub Emerald' : 'Cyber Neon'}</span>
           </button>
         </div>
 
