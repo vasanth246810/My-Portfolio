@@ -51,7 +51,9 @@ import {
   Monitor,
   Sun,
   Settings,
-  X
+  X,
+  Menu,
+  ChevronDown
 } from 'lucide-react';
 
 export default function VasanthPage({
@@ -148,6 +150,15 @@ export default function VasanthPage({
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [isPortraitFlipped, setIsPortraitFlipped] = useState(false);
   const [activeExperienceId, setActiveExperienceId] = useState(EXPERIENCES[0]?.id || 'fullstack-dev');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedExpIds, setExpandedExpIds] = useState(() => ({ [EXPERIENCES[0]?.id || '']: true }));
+
+  const toggleExpAccordion = (id) => {
+    setExpandedExpIds((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
   const isClickScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef(null);
 
@@ -334,11 +345,67 @@ export default function VasanthPage({
             download
             className="ak-resume-btn"
           >
-            <span>Résumé PDF</span>
+            <span>Résumé</span>
             <span>↓</span>
           </a>
+
+          {/* Mobile Hamburger Menu Button (Matching Image 1) */}
+          <button
+            type="button"
+            className="ak-mobile-menu-btn"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            title="Toggle Menu"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </header>
+
+      {/* Mobile Slide-Out Drawer Navigation (Matching Image 1 UX) */}
+      {isMobileMenuOpen && (
+        <div className="ak-mobile-drawer-overlay" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="ak-mobile-drawer" onClick={(e) => e.stopPropagation()}>
+            <div className="ak-mobile-drawer-header">
+              <div className="ak-mobile-drawer-brand">
+                <span className="ak-mark-square">{activeProfile.initials || 'VS'}</span>
+                <span className="ak-mobile-drawer-name">{displayName}</span>
+              </div>
+              <button
+                type="button"
+                className="ak-mobile-drawer-close"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <nav className="ak-mobile-drawer-nav">
+              <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+              <a href="#toolbox" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
+              <a href="#experience" onClick={() => setIsMobileMenuOpen(false)}>Experience</a>
+              <a href="#work" onClick={() => setIsMobileMenuOpen(false)}>Work</a>
+              <a href="#activity" onClick={() => setIsMobileMenuOpen(false)}>Activity</a>
+              <a href="#education" onClick={() => setIsMobileMenuOpen(false)}>Education</a>
+              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            </nav>
+
+            <div className="ak-mobile-drawer-footer">
+              <a
+                href={activeProfile.resumeUrl || "/Vasanth_Resume.pdf"}
+                download
+                className="ak-resume-btn"
+                style={{ width: '100%', justifyContent: 'center' }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span>Download Résumé PDF ↓</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 2. Hero Section */}
       <section className="ak-hero">
@@ -595,6 +662,80 @@ export default function VasanthPage({
                       ))}
                     </div>
                   </article>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile Experience Accordion (Screens <= 768px - Matching Image 4) */}
+          <div className="ak-xp-mobile-list">
+            <div className="ak-sec-eyebrow-row">
+              <span className="ak-sec-eyebrow-text">EXPERIENCE</span>
+              <div className="ak-sec-eyebrow-line" />
+            </div>
+
+            <h2 className="ak-xp-title" style={{ marginBottom: '24px' }}>Where I've been</h2>
+
+            <div className="ak-xp-accordion-group">
+              {EXPERIENCES.map((exp) => {
+                const isExpanded = !!expandedExpIds[exp.id];
+                return (
+                  <div
+                    key={exp.id}
+                    className={`ak-xp-accordion-card ${isExpanded ? 'expanded' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      className="ak-xp-accordion-header"
+                      onClick={() => toggleExpAccordion(exp.id)}
+                      aria-expanded={isExpanded}
+                    >
+                      <div className="ak-xp-accordion-meta-block">
+                        <span className="ak-xp-accordion-period">
+                          {exp.period} {exp.location ? `· ${exp.location}` : ''}
+                        </span>
+                        <div className="ak-xp-accordion-role-line">
+                          <span className="ak-xp-accordion-role">{exp.role}</span>
+                          <span className="ak-xp-accordion-sep"> — </span>
+                          <span className="ak-xp-accordion-company">{exp.company}</span>
+                        </div>
+                      </div>
+                      <ChevronDown
+                        size={18}
+                        className={`ak-xp-accordion-chevron ${isExpanded ? 'rotated' : ''}`}
+                      />
+                    </button>
+
+                    {isExpanded && (
+                      <div className="ak-xp-accordion-content">
+                        {exp.lede && (
+                          <p className="ak-xp-card-lede">{exp.lede}</p>
+                        )}
+                        {exp.points && exp.points.length > 0 && (
+                          <ul className="ak-xp-card-points">
+                            {exp.points.map((pt, idx) => (
+                              <li key={idx}>
+                                <span className="ak-xp-bullet" />
+                                <span
+                                  className="ak-xp-point-text"
+                                  dangerouslySetInnerHTML={{ __html: pt }}
+                                />
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {exp.chips && exp.chips.length > 0 && (
+                          <div className="ak-xp-card-chips">
+                            {exp.chips.map((chip) => (
+                              <span key={chip} className="ak-xp-chip">
+                                {chip}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>

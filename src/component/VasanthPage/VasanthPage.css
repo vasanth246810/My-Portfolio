@@ -2035,37 +2035,6 @@
   .ak-flip-card {
     height: 300px;
   }
-  .ak-xp-sticky-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .ak-xp-nav-list {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    scrollbar-width: none;
-  }
-  .ak-xp-nav-list::-webkit-scrollbar {
-    display: none;
-  }
-  .ak-xp-nav-btn {
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .ak-xp-cards-col {
-    height: 500px;
-  }
-  .ak-xp-layout {
-    grid-template-columns: 1fr;
-  }
-  .ak-xp-menu {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: var(--space-4);
-  }
-  .ak-xp-tab {
-    white-space: nowrap;
-  }
   .ak-nav-links {
     display: none;
   }
@@ -2241,4 +2210,257 @@
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+/* ==========================================================================
+   Mobile Navigation: Hamburger Button & Slide-Out Drawer (Matching Image 1)
+   ========================================================================== */
+
+.ak-mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--border);
+  transition: all var(--dur-fast);
+  flex-shrink: 0;
+}
+
+.ak-mobile-menu-btn:hover,
+.ak-mobile-menu-btn:active {
+  background: var(--canvas-base);
+  box-shadow: 1px 1px 0px var(--border);
+  transform: translateY(1px);
+}
+
+@media (max-width: 900px) {
+  .ak-mobile-menu-btn {
+    display: inline-flex;
+  }
+}
+
+.ak-mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  animation: akFadeIn 0.2s ease-out;
+}
+
+.ak-mobile-drawer {
+  width: min(85vw, 320px);
+  height: 100%;
+  background: var(--canvas-base);
+  border-left: 2px solid var(--border);
+  box-shadow: -8px 0 28px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  box-sizing: border-box;
+  animation: akSlideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ak-mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 2px dashed var(--border);
+  margin-bottom: 16px;
+}
+
+.ak-mobile-drawer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ak-mobile-drawer-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ak-mobile-drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--border);
+  transition: all var(--dur-fast);
+}
+
+.ak-mobile-drawer-close:hover {
+  background: var(--canvas-base);
+  color: var(--accent);
+}
+
+.ak-mobile-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.ak-mobile-drawer-nav a {
+  display: flex;
+  align-items: center;
+  padding: 13px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  transition: all var(--dur-fast);
+}
+
+.ak-mobile-drawer-nav a:hover,
+.ak-mobile-drawer-nav a:active {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.ak-mobile-drawer-footer {
+  padding-top: 16px;
+  border-top: 2px dashed var(--border);
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Mobile Experience Accordion (Matching Image 4)
+   ========================================================================== */
+
+.ak-xp-mobile-list {
+  display: none;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ak-xp-sticky-layout {
+    display: none !important;
+  }
+
+  .ak-xp-mobile-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.ak-xp-accordion-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.ak-xp-accordion-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0px var(--border);
+  overflow: hidden;
+  transition: box-shadow var(--dur-fast), border-color var(--dur-fast);
+}
+
+.ak-xp-accordion-card.expanded {
+  border-color: var(--accent);
+  box-shadow: 4px 4px 0px var(--accent);
+}
+
+.ak-xp-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.ak-xp-accordion-meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.ak-xp-accordion-period {
+  font-size: 12px;
+  color: var(--ink-subtle);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.ak-xp-accordion-role-line {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.ak-xp-accordion-role {
+  color: var(--ink);
+}
+
+.ak-xp-accordion-sep {
+  opacity: 0.5;
+  margin: 0 3px;
+}
+
+.ak-xp-accordion-company {
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.ak-xp-accordion-chevron {
+  color: var(--ink-subtle);
+  flex-shrink: 0;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.ak-xp-accordion-chevron.rotated {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.ak-xp-accordion-content {
+  padding: 16px 20px 20px 20px;
+  border-top: 1px dashed var(--border);
+  animation: akFadeIn 0.2s ease-out;
+}
+
+@keyframes akFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes akSlideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
