@@ -71,7 +71,9 @@ function normalizeSkillsData(raw) {
 
 function normalizeExperiencesData(raw) {
   if (!raw || !Array.isArray(raw)) return DEFAULT_EXPERIENCES;
-  return raw.map((exp) => {
+  return raw
+    .filter((exp) => exp && exp.id !== 'sethu-developer' && !(exp.company && exp.company.toLowerCase().includes('sethu')))
+    .map((exp) => {
     if (!exp) return exp;
     if (
       exp.company &&
@@ -91,6 +93,11 @@ function normalizeExperiencesData(raw) {
     }
     return exp;
   });
+}
+
+function normalizeProjectsData(raw) {
+  if (!raw || !Array.isArray(raw)) return DEFAULT_PROJECTS;
+  return raw.filter((p) => p && p.id !== 'portfolio-3d');
 }
 
 export function PortfolioDataProvider({ children }) {
@@ -184,7 +191,9 @@ export function PortfolioDataProvider({ children }) {
           localStorage.removeItem('local_portfolio_projects');
           setProjects(DEFAULT_PROJECTS);
         } else {
-          setProjects(parsed);
+          const normalized = normalizeProjectsData(parsed);
+          setProjects(normalized);
+          localStorage.setItem('local_portfolio_projects', JSON.stringify(normalized));
         }
       }
 
@@ -284,14 +293,17 @@ export function PortfolioDataProvider({ children }) {
     // Subscribe to Projects
     const unsubProjects = subscribeToLiveProjects((liveList) => {
       if (liveList && liveList.length > 0) {
-        setProjects(liveList);
-        localStorage.setItem('local_portfolio_projects', JSON.stringify(liveList));
+        const normalized = normalizeProjectsData(liveList);
+        setProjects(normalized);
+        localStorage.setItem('local_portfolio_projects', JSON.stringify(normalized));
         setHasFirestoreData(true);
       } else {
         const stored = localStorage.getItem('local_portfolio_projects');
         if (stored) {
           try {
-            setProjects(JSON.parse(stored));
+            const normalized = normalizeProjectsData(JSON.parse(stored));
+            setProjects(normalized);
+            localStorage.setItem('local_portfolio_projects', JSON.stringify(normalized));
           } catch {
             setProjects(DEFAULT_PROJECTS);
           }

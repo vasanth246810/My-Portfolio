@@ -704,8 +704,8 @@
 .ak-flip-card {
   perspective: 1000px;
   width: 100%;
-  max-width: 280px;
-  height: 352px;
+  max-width: 320px;
+  height: 410px;
   cursor: pointer;
   position: relative;
 }
@@ -2031,12 +2031,19 @@
 @media (max-width: 900px) {
   .ak-about-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
   .ak-flip-card {
-    height: 300px;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: clamp(380px, 92vw, 480px) !important;
+    margin: 0 auto;
   }
   .ak-nav-links {
-    display: none;
+    display: none !important;
+  }
+  .ak-settings-btn {
+    display: none !important;
   }
 }
 

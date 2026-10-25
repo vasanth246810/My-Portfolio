@@ -306,8 +306,8 @@ export default function VasanthPage({
           </a>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <ul className="ak-nav-links" style={{ display: 'flex', gap: '22px', listStyle: 'none', margin: 0, padding: 0 }}>
+        <div className="ak-bar-right">
+          <ul className="ak-nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#toolbox">Skills</a></li>
             <li><a href="#experience">Experience</a></li>

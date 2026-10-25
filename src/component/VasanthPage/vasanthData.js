@@ -143,21 +143,6 @@ export const EXPERIENCES = [
       'Implemented secure user authentication workflows, session handling, and responsive cross-browser layouts with Bootstrap and custom CSS.'
     ],
     chips: ['React', 'Django', 'Python', 'MySQL', 'JavaScript', 'Bootstrap']
-  },
-  {
-    id: 'sethu-developer',
-    role: 'Student Software Developer',
-    company: 'Sethu Institute of Technology',
-    navMeta: 'B.E. Computer Science · 2020 – 2024',
-    period: '2020 – 2024',
-    location: 'Tamil Nadu, India',
-    lede: 'Graduated with a Bachelor of Engineering in Computer Science, mastering core engineering fundamentals and building academic software solutions.',
-    points: [
-      'Completed rigorous coursework in Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, and Software Engineering.',
-      'Collaborated on team projects to develop web applications and database-backed management portals.',
-      'Conducted unit testing, database normalization, and version control workflows with Git and GitHub.'
-    ],
-    chips: ['Python', 'MySQL', 'HTML5', 'CSS3', 'Git', 'GitHub']
   }
 ];
 
@@ -183,18 +168,6 @@ export const PROJECTS = [
     award: '🍔 Full-Stack Web Application',
     chips: ['React', 'Django', 'MySQL', 'Bootstrap', 'JavaScript'],
     linkText: 'View Source',
-    liveUrl: 'https://github.com/vasanth246810',
-    githubUrl: 'https://github.com/vasanth246810'
-  },
-  {
-    id: 'portfolio-3d',
-    no: '03 / 2026 · Interactive System',
-    title: 'Interactive 3D Skills Sphere & CMS Engine',
-    tag: 'Physics Math & Firebase Synchronization',
-    lede: 'An interactive 3D spherical skills cloud with dynamic physics rotation, responsive particle math, and real-time Firebase Firestore content management sync.',
-    award: '🌐 3D Data Visualization',
-    chips: ['React', 'JavaScript', 'Firebase', 'CSS3', 'Vite'],
-    linkText: 'Explore Features',
     liveUrl: 'https://github.com/vasanth246810',
     githubUrl: 'https://github.com/vasanth246810'
   }
