@@ -193,6 +193,23 @@ export function subscribeToAuthChanges(callback) {
   return onAuthStateChanged(auth, callback);
 }
 
+
+// Graceful Firestore read error handler
+let hasWarnedFirestoreRules = false;
+function handleFirestoreReadError(collectionName, err, callback, fallbackValue = []) {
+  if (err?.code === 'permission-denied') {
+    if (!hasWarnedFirestoreRules) {
+      hasWarnedFirestoreRules = true;
+      console.warn(
+        '[Firebase] Firestore read permission not yet enabled in Firebase Console. Using local/default portfolio data. To enable live sync, update Firestore Rules in Firebase Console (set: allow read: if true; allow write: if request.auth != null;).'
+      );
+    }
+  } else {
+    console.error(`[Firebase] Error fetching live ${collectionName}:`, err);
+  }
+  callback(fallbackValue);
+}
+
 // 4. Firestore Project Helpers
 export function subscribeToLiveProjects(callback) {
   if (!db) {
@@ -211,8 +228,7 @@ export function subscribeToLiveProjects(callback) {
     }));
     callback(list);
   }, (err) => {
-    console.error('[Firebase] Error fetching live projects:', err);
-    callback([]);
+    handleFirestoreReadError('projects', err, callback, []);
   });
 }
 
@@ -261,8 +277,7 @@ export function subscribeToLiveExperiences(callback) {
     }));
     callback(list);
   }, (err) => {
-    console.error('[Firebase] Error fetching live experiences:', err);
-    callback([]);
+    handleFirestoreReadError('experiences', err, callback, []);
   });
 }
 
@@ -310,8 +325,7 @@ export function subscribeToLiveProfile(callback) {
       callback(null);
     }
   }, (err) => {
-    console.error('[Firebase] Error fetching live profile:', err);
-    callback(null);
+    handleFirestoreReadError('profile', err, callback, null);
   });
 }
 
@@ -340,8 +354,7 @@ export function subscribeToLiveSocials(callback) {
       callback(null);
     }
   }, (err) => {
-    console.error('[Firebase] Error fetching live socials:', err);
-    callback(null);
+    handleFirestoreReadError('socials', err, callback, null);
   });
 }
 
@@ -370,8 +383,7 @@ export function subscribeToLiveEducation(callback) {
     }));
     callback(list);
   }, (err) => {
-    console.error('[Firebase] Error fetching live education:', err);
-    callback([]);
+    handleFirestoreReadError('education', err, callback, []);
   });
 }
 
@@ -426,8 +438,7 @@ export function subscribeToLiveSkills(callback) {
       callback(null);
     }
   }, (err) => {
-    console.error('[Firebase] Error fetching live skills:', err);
-    callback(null);
+    handleFirestoreReadError('skills', err, callback, null);
   });
 }
 
@@ -456,8 +467,7 @@ export function subscribeToLiveAwards(callback) {
     }));
     callback(list);
   }, (err) => {
-    console.error('[Firebase] Error fetching live awards:', err);
-    callback([]);
+    handleFirestoreReadError('awards', err, callback, []);
   });
 }
 
@@ -505,8 +515,7 @@ export function subscribeToLiveWritings(callback) {
     }));
     callback(list);
   }, (err) => {
-    console.error('[Firebase] Error fetching live writings:', err);
-    callback([]);
+    handleFirestoreReadError('writings', err, callback, []);
   });
 }
 

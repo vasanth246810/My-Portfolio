@@ -6,6 +6,8 @@ import { getFirebaseConfig, saveFirebaseConfig, clearFirebaseConfig } from '../.
 import { SkillIcon, BUILT_IN_ICON_KEYS } from '../SkillsSphere/skillAssetIcons.jsx';
 import { 
   Plus, 
+  Camera, 
+  Upload, 
   Trash2, 
   Edit3, 
   Check, 
