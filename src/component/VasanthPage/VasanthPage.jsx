@@ -54,7 +54,13 @@ import {
   X
 } from 'lucide-react';
 
-export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings = DEFAULT_SETTINGS, onSettingsChange }) {
+export default function VasanthPage({
+  onOpenClassicPortfolio,
+  onReturnToPortfolio,
+  onOpenAdmin,
+  settings = DEFAULT_SETTINGS,
+  onSettingsChange
+}) {
   const {
     skills: liveSkills,
     projects: liveProjects,
@@ -118,7 +124,27 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
   const activeDisplayMode = currentViewMode === 'sphere-names' ? 'names' : 'icons';
 
   const [viewMode, setViewMode] = useState('classic'); // 'classic' or 'canvas'
-  const [currentTheme, setCurrentTheme] = useState('cream');
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('portfolio_theme');
+        if (saved) return saved;
+      } catch {}
+    }
+    return 'obsidian'; // Defaults to modern obsidian dark theme when dark mode is loaded
+  });
+
+  const handleSelectTheme = (themeId) => {
+    setCurrentTheme(themeId);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('portfolio_theme', themeId);
+        if (themeId !== 'cream') {
+          localStorage.setItem('last_dark_theme', themeId);
+        }
+      } catch {}
+    }
+  };
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [isPortraitFlipped, setIsPortraitFlipped] = useState(false);
   const [activeExperienceId, setActiveExperienceId] = useState(EXPERIENCES[0]?.id || 'fullstack-dev');
@@ -241,27 +267,27 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
   }
 
   const toggleTheme = () => {
-    setCurrentTheme((prev) => (prev === 'cream' ? 'nord' : 'cream'));
+    handleSelectTheme(currentTheme === 'cream' ? 'obsidian' : 'cream');
   };
 
-  const nameParts = (activeProfile.name || 'VASANTH S').split(' ');
-  const firstName = nameParts[0] || 'VASANTH';
-  const lastName = nameParts.slice(1).join(' ') || 'S';
+  const displayName = (activeProfile.name || 'Vasanth S').trim();
 
   return (
     <div className="aahil-system" data-theme={currentTheme}>
       {/* 1. Header Bar */}
       <header className="ak-bar">
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <button
-            type="button"
-            className="ak-return-btn"
-            onClick={onReturnToPortfolio}
-            title="Return to the main portfolio"
-          >
-            <ArrowLeft size={14} />
-            <span>Main App</span>
-          </button>
+          {/* {(onOpenClassicPortfolio || onReturnToPortfolio) && (
+            <button
+              type="button"
+              className="ak-return-btn"
+              onClick={onOpenClassicPortfolio || onReturnToPortfolio}
+              title="View the classic portfolio"
+            >
+              <ArrowLeft size={14} />
+              <span>Classic Portfolio</span>
+            </button>
+          )} */}
 
           {/* Initials badge */}
           <a href="#top" className="ak-mark-square" aria-label="Top">
@@ -276,7 +302,7 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
             <li><a href="#experience">Experience</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#activity">Activity</a></li>
-            <li><a href="#credentials">Honors</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
 
@@ -317,8 +343,6 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
       {/* 2. Hero Section */}
       <section className="ak-hero">
         <div className="ak-hero-grid" />
-        <div className="ak-hero-glow" />
-        <div className="ak-hero-dot" />
 
         <div className="ak-wrap">
           {/* Eyebrow */}
@@ -327,10 +351,9 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
             <div className="ak-eyebrow-line" />
           </div>
 
-          {/* Name */}
+          {/* Name: Keep initial S near first name with a space on a single line */}
           <h1 className="ak-hero-name">
-            <span>{firstName.toUpperCase()}</span>
-            <span>{lastName.toUpperCase()}</span>
+            {displayName.toUpperCase()}
           </h1>
 
           {/* Headline */}
@@ -347,16 +370,19 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
               <span className="ak-cta-arrow">→</span>
             </a>
 
-            <button
-              type="button"
-              className="ak-ghost-pill"
-              onClick={() => setViewMode('canvas')}
-              title="Launch interactive infinite desktop OS with retro arcade & lofi"
-            >
-              <span className="ak-ghost-dot" />
-              <span>There’s a far more fun version of this</span>
-              <span className="ak-ghost-badge">highly recommended</span>
-            </button>
+            {/* Canvas button: hidden by default until turned on via Settings */}
+            {settings.showCanvasLink && (
+              <button
+                type="button"
+                className="ak-ghost-pill"
+                onClick={() => setViewMode('canvas')}
+                title="Launch interactive infinite desktop OS with retro arcade & lofi"
+              >
+                <span className="ak-ghost-dot" />
+                <span>There’s a far more fun version of this</span>
+                <span className="ak-ghost-badge">highly recommended</span>
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -518,7 +544,11 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
                       </span>
                       <div className="ak-xp-nav-info">
                         <span className="ak-xp-nav-company">{exp.company}</span>
-                        <span className="ak-xp-nav-meta">{exp.navMeta || `${exp.role} · ${exp.period}`}</span>
+                        <span className="ak-xp-nav-meta">
+                          {exp.role && exp.period
+                            ? `${exp.role} · ${exp.period}`
+                            : (exp.navMeta || exp.role || exp.period || '')}
+                        </span>
                       </div>
                     </button>
                   );
@@ -655,14 +685,14 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
           <GitContributionMap variant="showcase" parentTheme={currentTheme} />
         </section>
 
-        {/* 7. Education, Awards & Writings */}
-        <section id="credentials" className="ak-section ak-creds-section">
+        {/* 7. Education */}
+        <section id="education" className="ak-section ak-creds-section">
           <div className="ak-sec-eyebrow-row">
-            <span className="ak-sec-eyebrow-text">BACKGROUND &amp; WRITINGS</span>
+            <span className="ak-sec-eyebrow-text">ACADEMIC BACKGROUND</span>
             <div className="ak-sec-eyebrow-line" />
           </div>
 
-          <h2 className="ak-toolbox-title">Education, Awards &amp; Writing</h2>
+          <h2 className="ak-toolbox-title">Education</h2>
 
           <div className="ak-creds-grid">
             {/* Education */}
@@ -670,66 +700,19 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
               <h3>Education</h3>
               <ul className="ak-cred-list">
                 {EDUCATION.map((edu, idx) => (
-                  <li key={edu.id || idx}>
-                    <b style={{ display: 'block', color: 'var(--ink)' }}>{edu.degree}</b>
-                    <span style={{ color: 'var(--ink-subtle)', fontSize: '12px' }}>{edu.institution}</span>
-                    <div style={{ color: 'var(--accent)', fontSize: '11px', fontWeight: 600, marginTop: '2px' }}>
-                      {edu.period} · {edu.score}
+                  <li key={edu.id || idx} className="ak-edu-item">
+                    <div className="ak-edu-header">
+                      <div className="ak-edu-main">
+                        <b className="ak-edu-degree">{edu.degree}</b>
+                        <span className="ak-edu-institution">{edu.institution}</span>
+                      </div>
+                      <div className="ak-edu-meta">
+                        {edu.period}{edu.score ? ` · ${edu.score}` : ''}
+                      </div>
                     </div>
                     {edu.highlights && (
-                      <p style={{ margin: '4px 0 0 0', fontSize: '12px', opacity: 0.8 }}>{edu.highlights}</p>
+                      <p className="ak-edu-highlights">{edu.highlights}</p>
                     )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Awards */}
-            <div className="ak-cred-card">
-              <h3>Awards &amp; Honors</h3>
-              <ul className="ak-cred-list">
-                {AWARDS.map((award, idx) => {
-                  const title = typeof award === 'string' ? award : award.title;
-                  const issuer = typeof award === 'object' ? award.issuer : '';
-                  const year = typeof award === 'object' ? award.year : '';
-                  const link = typeof award === 'object' ? award.link : '';
-                  return (
-                    <li key={award.id || idx}>
-                      <b style={{ display: 'block', color: 'var(--ink)' }}>{title}</b>
-                      {(issuer || year) && (
-                        <span style={{ color: 'var(--ink-subtle)', fontSize: '12px' }}>
-                          {issuer} {year ? `· ${year}` : ''}
-                        </span>
-                      )}
-                      {link && (
-                        <a href={link} target="_blank" rel="noopener noreferrer" style={{ fontSize: '11px', display: 'block', marginTop: '2px', color: 'var(--accent)' }}>
-                          View credential ↗
-                        </a>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            {/* Writings */}
-            <div className="ak-cred-card">
-              <h3>Articles &amp; Notes</h3>
-              <ul className="ak-cred-list">
-                {WRITINGS.map((writing, idx) => (
-                  <li key={writing.id || idx}>
-                    <a
-                      href={writing.url || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ak-writing-link"
-                    >
-                      <b>{writing.title}</b>
-                      {writing.subtitle && (
-                        <span style={{ color: 'var(--ink-subtle)', fontSize: '12px', display: 'block' }}>{writing.subtitle}</span>
-                      )}
-                      <span style={{ fontSize: '11px', opacity: 0.7 }}>{writing.meta} ↗</span>
-                    </a>
                   </li>
                 ))}
               </ul>
@@ -739,8 +722,6 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
 
         {/* 8. Contact Section */}
         <section id="contact" className="ak-section ak-closer-section">
-          <div className="ak-closer-glow" />
-
           <h2 className="ak-closer-title">
             <span>Let’s build</span>
             <span>something.</span>
@@ -791,34 +772,36 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
             </a>
           </div>
 
-          {/* Secret Door ("The Desk") */}
-          <div className="ak-door" id="desk">
-            <div className="ak-door-copy">
-              <p className="ak-door-title">Oh, and this page is the boring half.</p>
-              <p>
-                The main portfolio is finished. This one is a little less serious. There's a canvas, beautiful cards, a few games, lofi, and probably more than there needs to be.
-              </p>
-              <p>
-                Some of it keeps score. Try not to take that personally.
-              </p>
-              <p>
-                There are things here that aren't meant to be obvious. If you find one, you find one.
-              </p>
+          {/* Secret Door ("The Desk") - Hidden by default until showCanvasLink is enabled */}
+          {settings.showCanvasLink && (
+            <div className="ak-door" id="desk">
+              <div className="ak-door-copy">
+                <p className="ak-door-title">Oh, and this page is the boring half.</p>
+                <p>
+                  The main portfolio is finished. This one is a little less serious. There's a canvas, beautiful cards, a few games, lofi, and probably more than there needs to be.
+                </p>
+                <p>
+                  Some of it keeps score. Try not to take that personally.
+                </p>
+                <p>
+                  There are things here that aren't meant to be obvious. If you find one, you find one.
+                </p>
+              </div>
+              <div className="ak-door-go">
+                <button
+                  type="button"
+                  className="ak-door-btn"
+                  onClick={() => setViewMode('canvas')}
+                >
+                  <span>Open the canvas →</span>
+                </button>
+                <p className="ak-door-note">
+                  Only Desktops supported. This<br />
+                  place has a lot going on.
+                </p>
+              </div>
             </div>
-            <div className="ak-door-go">
-              <button
-                type="button"
-                className="ak-door-btn"
-                onClick={() => setViewMode('canvas')}
-              >
-                <span>Open the canvas →</span>
-              </button>
-              <p className="ak-door-note">
-                Only Desktops supported. This<br />
-                place has a lot going on.
-              </p>
-            </div>
-          </div>
+          )}
         </section>
 
         {/* Footer */}
@@ -828,25 +811,7 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
           </div>
           <div className="ak-footer-right" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
             <span>Thanks for scrolling all the way down :)</span>
-            {onOpenAdmin && (
-              <button
-                type="button"
-                onClick={onOpenAdmin}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: 'inherit',
-                  opacity: 0.5,
-                  fontSize: '11px',
-                  cursor: 'pointer',
-                  textDecoration: 'underline',
-                  fontFamily: 'inherit'
-                }}
-                title="Admin Content Manager (Firebase)"
-              >
-                ⚙ CMS
-              </button>
-            )}
+            {/* CMS link hidden per user request; CMS remains accessible via Ctrl+Shift+A hotkey or ?page=admin */}
           </div>
         </footer>
       </main>
@@ -884,7 +849,40 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
               </button>
             </div>
 
+            {/* Theme & Palette Live Selector */}
             <div style={{ marginBottom: '16px' }}>
+              <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px', opacity: 0.8 }}>
+                Dark / Light Color Theme
+              </label>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {THEMES.map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    className={`ak-toolbox-btn ${currentTheme === t.id ? 'active' : ''}`}
+                    style={{ justifyContent: 'space-between', width: '100%', padding: '7px 10px', fontSize: '12px' }}
+                    onClick={() => handleSelectTheme(t.id)}
+                  >
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span
+                        style={{
+                          width: '12px',
+                          height: '12px',
+                          borderRadius: '50%',
+                          backgroundColor: t.bg,
+                          boxShadow: `0 0 0 2px ${t.accent}`,
+                          display: 'inline-block'
+                        }}
+                      />
+                      <span>{t.icon} <strong>{t.name}</strong></span>
+                    </span>
+                    <span style={{ fontSize: '10px', opacity: 0.65 }}>{t.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ borderTop: '1px solid rgba(128,128,128,0.2)', paddingTop: '12px', marginBottom: '16px' }}>
               <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '8px', opacity: 0.8 }}>
                 Skills Presentation Mode
               </label>
@@ -945,6 +943,24 @@ export default function VasanthPage({ onReturnToPortfolio, onOpenAdmin, settings
                 </div>
               </div>
             )}
+
+            {/* Canvas OS Desktop Link visibility toggle */}
+            {/* <div style={{ borderTop: '1px solid rgba(128,128,128,0.2)', paddingTop: '12px', marginBottom: '12px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ fontSize: '12px', fontWeight: 600 }}>Interactive Canvas OS</div>
+                  <div style={{ fontSize: '11px', opacity: 0.65 }}>Show links to the retro desktop canvas</div>
+                </div>
+                <button
+                  type="button"
+                  className={`ak-toolbox-btn ${settings.showCanvasLink ? 'active' : ''}`}
+                  style={{ padding: '3px 12px', fontSize: '11px' }}
+                  onClick={() => updateSetting('showCanvasLink', !settings.showCanvasLink)}
+                >
+                  {settings.showCanvasLink ? 'VISIBLE' : 'HIDDEN'}
+                </button>
+              </div>
+            </div> */}
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '12px' }}>
               <button

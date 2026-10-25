@@ -69,6 +69,30 @@ function normalizeSkillsData(raw) {
   return raw;
 }
 
+function normalizeExperiencesData(raw) {
+  if (!raw || !Array.isArray(raw)) return DEFAULT_EXPERIENCES;
+  return raw.map((exp) => {
+    if (!exp) return exp;
+    if (
+      exp.company &&
+      exp.company.toLowerCase().includes('orbitz')
+    ) {
+      const isRolePlaceholder = !exp.role || exp.role.trim().toLowerCase() === 'role';
+      const isPeriodPlaceholder = !exp.period || exp.period.trim() === '2026';
+      const role = isRolePlaceholder ? 'Software Developer' : exp.role;
+      const period = isPeriodPlaceholder ? 'Feb 2026 – Present' : exp.period;
+      const navMeta = (!exp.navMeta || exp.navMeta.trim() === 'Role · 2026') ? `${role} · ${period}` : exp.navMeta;
+      return {
+        ...exp,
+        role,
+        period,
+        navMeta
+      };
+    }
+    return exp;
+  });
+}
+
 export function PortfolioDataProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -170,7 +194,9 @@ export function PortfolioDataProvider({ children }) {
           localStorage.removeItem('local_portfolio_experiences');
           setExperiences(DEFAULT_EXPERIENCES);
         } else {
-          setExperiences(parsed);
+          const normalized = normalizeExperiencesData(parsed);
+          setExperiences(normalized);
+          localStorage.setItem('local_portfolio_experiences', JSON.stringify(normalized));
         }
       }
     } catch (err) {
@@ -279,13 +305,16 @@ export function PortfolioDataProvider({ children }) {
     // Subscribe to Experiences
     const unsubExperiences = subscribeToLiveExperiences((liveList) => {
       if (liveList && liveList.length > 0) {
-        setExperiences(liveList);
-        localStorage.setItem('local_portfolio_experiences', JSON.stringify(liveList));
+        const normalized = normalizeExperiencesData(liveList);
+        setExperiences(normalized);
+        localStorage.setItem('local_portfolio_experiences', JSON.stringify(normalized));
       } else {
         const stored = localStorage.getItem('local_portfolio_experiences');
         if (stored) {
           try {
-            setExperiences(JSON.parse(stored));
+            const normalized = normalizeExperiencesData(JSON.parse(stored));
+            setExperiences(normalized);
+            localStorage.setItem('local_portfolio_experiences', JSON.stringify(normalized));
           } catch {
             setExperiences(DEFAULT_EXPERIENCES);
           }

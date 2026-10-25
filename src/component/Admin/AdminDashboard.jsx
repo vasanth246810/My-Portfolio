@@ -443,12 +443,17 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
   const handleSaveExperience = async (e) => {
     e.preventDefault();
     if (!expForm.role.trim() || !expForm.company.trim()) return;
+    const computedNavMeta = `${expForm.role.trim()}${expForm.period.trim() ? ` · ${expForm.period.trim()}` : ''}`;
+    const payload = {
+      ...expForm,
+      navMeta: computedNavMeta
+    };
     try {
       if (editingExpId) {
-        await editExperience(editingExpId, expForm);
+        await editExperience(editingExpId, payload);
         triggerSaveNotification(`Updated experience at "${expForm.company}"`);
       } else {
-        await createExperience(expForm);
+        await createExperience(payload);
         triggerSaveNotification(`Added experience at "${expForm.company}"`);
       }
     } catch (err) {

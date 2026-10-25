@@ -4,10 +4,8 @@
  */
 
 export const THEMES = [
-  { id: 'nord', name: 'Nord Dark' },
-  { id: 'cream', name: 'Cream Light' },
-  { id: 'tokyo-night', name: 'Tokyo Night' },
-  { id: 'gruvbox-dark', name: 'Gruvbox' }
+  { id: 'cream', name: 'Cream Light', icon: '☀️', bg: '#F7F5EE', accent: '#FACC00', desc: 'Default Light Theme' },
+  { id: 'obsidian', name: 'Obsidian Amber', icon: '⚡', bg: '#0A0B10', accent: '#F59E0B', desc: 'Default Dark Theme' }
 ];
 
 export const DEFAULT_SKILL_ITEMS = [
@@ -115,6 +113,21 @@ export const SKILL_CATEGORIES = [
 ];
 
 export const EXPERIENCES = [
+  {
+    id: 'orbitz-it-solution',
+    role: 'Software Developer',
+    company: 'Orbitz IT solution',
+    navMeta: 'Software Developer · Feb 2026 – Present',
+    period: 'Feb 2026 – Present',
+    location: 'Tamil Nadu, India',
+    lede: 'Working as a Software Developer building responsive, performant web applications and software solutions.',
+    points: [
+      'Developing and maintaining production-grade web applications using modern web technologies and frameworks.',
+      'Collaborating across full-stack engineering workflows, REST API integrations, and feature development.',
+      'Ensuring responsive UI/UX and optimizing frontend performance across modern desktop and mobile browsers.'
+    ],
+    chips: ['React', 'JavaScript', 'Python', 'Web Development']
+  },
   {
     id: 'fullstack-dev',
     role: 'Full-Stack Developer',
