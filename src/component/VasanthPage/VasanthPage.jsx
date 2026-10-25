@@ -393,6 +393,18 @@ export default function VasanthPage({
             </nav>
 
             <div className="ak-mobile-drawer-footer" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <button
+                type="button"
+                className="ak-resume-btn"
+                style={{ width: '100%', justifyContent: 'center' }}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setShowSettingsModal(true);
+                }}
+              >
+                <Settings size={15} style={{ marginRight: '6px' }} />
+                <span>Display & 3D Settings</span>
+              </button>
               <a
                 href={activeSocials.whatsapp || "https://wa.me/9600245586"}
                 target="_blank"
