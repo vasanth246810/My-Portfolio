@@ -158,8 +158,6 @@ export const LONG_LABELS_SKILLS = [
 export const HIGH_DENSITY_SKILLS = [
   ...STANDARD_SKILLS,
   { name: 'GraphQL', category: 'frontend_backend', weight: 2, iconComponent: SiGraphql, brandColor: '#E10098' },
-  { name: 'Next.js', category: 'frontend_backend', weight: 2, iconComponent: SiNextdotjs, brandColor: '#ffffff' },
-  { name: 'Redis', category: 'databases_tools', weight: 2, iconComponent: SiRedis, brandColor: '#DC382D' },
   { name: 'MongoDB', category: 'databases_tools', weight: 2, iconComponent: SiMongodb, brandColor: '#47A248' },
   { name: 'FastAPI', category: 'frontend_backend', weight: 2, iconComponent: SiFastapi, brandColor: '#009688' },
   { name: 'Java', category: 'languages', weight: 2, iconComponent: FaJava, brandColor: '#ED8B00' },

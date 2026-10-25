@@ -235,7 +235,20 @@ export function PortfolioDataProvider({ children }) {
     // Subscribe to Skills
     const unsubSkills = subscribeToLiveSkills((liveSkills) => {
       if (liveSkills && liveSkills.length > 0) {
-        setSkills(normalizeSkillsData(liveSkills));
+        const normalized = normalizeSkillsData(liveSkills);
+        setSkills(normalized);
+        localStorage.setItem('local_portfolio_skills', JSON.stringify(normalized));
+      } else {
+        const stored = localStorage.getItem('local_portfolio_skills');
+        if (stored) {
+          try {
+            setSkills(normalizeSkillsData(JSON.parse(stored)));
+          } catch {
+            setSkills(DEFAULT_SKILL_ITEMS);
+          }
+        } else {
+          setSkills(DEFAULT_SKILL_ITEMS);
+        }
       }
     });
 

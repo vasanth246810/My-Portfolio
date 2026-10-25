@@ -251,7 +251,7 @@ export async function updateProjectInDB(id, projectData) {
     ...projectData,
     updatedAt: serverTimestamp()
   };
-  await updateDoc(docRef, payload);
+  await setDoc(docRef, payload, { merge: true });
   return { id, ...payload };
 }
 
@@ -300,7 +300,7 @@ export async function updateExperienceInDB(id, expData) {
     ...expData,
     updatedAt: serverTimestamp()
   };
-  await updateDoc(docRef, payload);
+  await setDoc(docRef, payload, { merge: true });
   return { id, ...payload };
 }
 
@@ -406,7 +406,7 @@ export async function updateEducationInDB(id, eduData) {
     ...eduData,
     updatedAt: serverTimestamp()
   };
-  await updateDoc(docRef, payload);
+  await setDoc(docRef, payload, { merge: true });
   return { id, ...payload };
 }
 
@@ -490,7 +490,7 @@ export async function updateAwardInDB(id, awardData) {
     ...awardData,
     updatedAt: serverTimestamp()
   };
-  await updateDoc(docRef, payload);
+  await setDoc(docRef, payload, { merge: true });
   return { id, ...payload };
 }
 
@@ -538,7 +538,7 @@ export async function updateWritingInDB(id, writingData) {
     ...writingData,
     updatedAt: serverTimestamp()
   };
-  await updateDoc(docRef, payload);
+  await setDoc(docRef, payload, { merge: true });
   return { id, ...payload };
 }
 

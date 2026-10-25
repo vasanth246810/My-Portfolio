@@ -24,13 +24,11 @@ export const DEFAULT_SKILL_ITEMS = [
   { id: 'postman', name: 'Postman', category: 'Tools', icon: 'postman', level: 'Proficient', weight: 2, color: '#FF6C37' },
   // Modern Full-Stack Extensions
   { id: 'typescript', name: 'TypeScript', category: 'Languages', icon: 'typescript', level: 'Proficient', weight: 2, color: '#3178C6' },
-  { id: 'nextjs', name: 'Next.js', category: 'Frontend', icon: 'nextjs', level: 'Proficient', weight: 2, color: '#000000' },
   { id: 'nodejs', name: 'Node.js', category: 'Backend', icon: 'nodejs', level: 'Proficient', weight: 2, color: '#5FA04E' },
   { id: 'fastapi', name: 'FastAPI', category: 'Backend', icon: 'fastapi', level: 'Proficient', weight: 2, color: '#009688' },
   { id: 'postgresql', name: 'PostgreSQL', category: 'Databases', icon: 'postgresql', level: 'Proficient', weight: 2, color: '#336791' },
   { id: 'docker', name: 'Docker', category: 'Cloud & DevOps', icon: 'docker', level: 'Proficient', weight: 2, color: '#2496ED' },
-  { id: 'aws', name: 'AWS', category: 'Cloud & DevOps', icon: 'aws', level: 'Familiar', weight: 1, color: '#FF9900' },
-  { id: 'redis', name: 'Redis', category: 'Databases', icon: 'redis', level: 'Familiar', weight: 1, color: '#DC382D' }
+  { id: 'aws', name: 'AWS', category: 'Cloud & DevOps', icon: 'aws', level: 'Familiar', weight: 1, color: '#FF9900' }
 ];
 
 export function groupSkillsByCategory(skillsList) {
@@ -67,7 +65,6 @@ export const SKILL_CATEGORIES = [
     category: 'FRAMEWORKS',
     skills: [
       { name: 'React', icon: 'react' },
-      { name: 'Next.js', icon: 'nextjs' },
       { name: 'Node.js', icon: 'nodejs' },
       { name: 'Express.js', icon: 'express' },
       { name: 'FastAPI', icon: 'fastapi' }
@@ -78,7 +75,6 @@ export const SKILL_CATEGORIES = [
     skills: [
       { name: 'PostgreSQL', icon: 'postgresql' },
       { name: 'MySQL', icon: 'mysql' },
-      { name: 'Redis', icon: 'redis' },
       { name: 'DynamoDB', icon: 'dynamodb' },
       { name: 'Prisma', icon: 'prisma' }
     ]
