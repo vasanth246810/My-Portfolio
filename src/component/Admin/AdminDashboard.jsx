@@ -678,12 +678,57 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
               background: 'rgba(191, 97, 106, 0.2)',
               border: '1px solid #bf616a',
               color: '#eceff4',
-              padding: '12px',
+              padding: '14px',
               borderRadius: '8px',
               fontSize: '13px',
               marginBottom: '16px'
             }}>
-              {authError}
+              {authError.includes('unauthorized-domain') ? (
+                <div>
+                  <div style={{ fontWeight: 700, color: '#fabd2f', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span>⚠️ Firebase Domain Authorization Required</span>
+                  </div>
+                  <p style={{ margin: '0 0 10px', lineHeight: 1.5, fontSize: '12.5px', color: '#d8dee9' }}>
+                    Firebase Auth blocks logins from new domains by default. You need to add this domain to <strong>Authorized Domains</strong> in your Firebase project (<strong>portfolio-28c78</strong>):
+                  </p>
+                  <div style={{ 
+                    background: '#1a1c23', 
+                    padding: '8px 12px', 
+                    borderRadius: '6px', 
+                    fontFamily: 'monospace', 
+                    fontSize: '13px', 
+                    color: '#61afef', 
+                    border: '1px solid #2e3440',
+                    marginBottom: '10px',
+                    wordBreak: 'break-all'
+                  }}>
+                    {typeof window !== 'undefined' ? window.location.hostname : 'vasanth-portfolio-amber.vercel.app'}
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <a
+                      href="https://console.firebase.google.com/project/portfolio-28c78/authentication/settings"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: '#fabd2f',
+                        color: '#1a1c23',
+                        fontWeight: 600,
+                        fontSize: '12px',
+                        padding: '6px 12px',
+                        borderRadius: '4px',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Open Firebase Auth Settings ↗
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                authError
+              )}
             </div>
           )}
 
