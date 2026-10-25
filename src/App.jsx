@@ -25,17 +25,17 @@ function checkIsDemo() {
   );
 }
 
-function checkIsVasanthPage() {
+function checkIsClassicPortfolio() {
   if (typeof window === 'undefined') return false;
   const search = window.location.search.toLowerCase();
   const hash = window.location.hash.toLowerCase();
   return (
-    search.includes('page=vasanth') ||
-    search.includes('page=showcase') ||
-    search.includes('view=vasanth') ||
-    search.includes('view=showcase') ||
-    hash.includes('vasanth') ||
-    hash.includes('showcase')
+    search.includes('page=classic') ||
+    search.includes('page=old') ||
+    search.includes('view=classic') ||
+    search.includes('view=old') ||
+    hash.includes('classic') ||
+    hash.includes('old')
   );
 }
 
@@ -53,7 +53,7 @@ function checkIsAdmin() {
 
 function App() {
   const [isDemoView, setIsDemoView] = useState(checkIsDemo);
-  const [isVasanthView, setIsVasanthView] = useState(checkIsVasanthPage);
+  const [isClassicView, setIsClassicView] = useState(checkIsClassicPortfolio);
   const [isAdminView, setIsAdminView] = useState(checkIsAdmin);
 
   // Settings state persisted in localStorage
@@ -83,7 +83,7 @@ function App() {
   useEffect(() => {
     const handleUrlChange = () => {
       setIsDemoView(checkIsDemo());
-      setIsVasanthView(checkIsVasanthPage());
+      setIsClassicView(checkIsClassicPortfolio());
       setIsAdminView(checkIsAdmin());
     };
 
@@ -109,14 +109,14 @@ function App() {
   const openDemo = () => {
     window.history.pushState({}, '', '?demo=skills-sphere');
     setIsDemoView(true);
-    setIsVasanthView(false);
+    setIsClassicView(false);
     setIsAdminView(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const openVasanthPage = () => {
-    window.history.pushState({}, '', '?page=vasanth');
-    setIsVasanthView(true);
+  const openClassicPortfolio = () => {
+    window.history.pushState({}, '', '?page=classic');
+    setIsClassicView(true);
     setIsDemoView(false);
     setIsAdminView(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -125,55 +125,58 @@ function App() {
   const openAdmin = () => {
     window.history.pushState({}, '', '?page=admin');
     setIsAdminView(true);
-    setIsVasanthView(false);
+    setIsClassicView(false);
     setIsDemoView(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const returnToPortfolio = () => {
+  const returnToMainPortfolio = () => {
     window.history.pushState({}, '', window.location.pathname);
+    setIsClassicView(false);
     setIsDemoView(false);
-    setIsVasanthView(false);
     setIsAdminView(false);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const renderContent = () => {
     if (isAdminView) {
-      return <AdminDashboard onReturnToPortfolio={returnToPortfolio} />;
-    }
-
-    if (isVasanthView) {
-      return (
-        <VasanthPage
-          onReturnToPortfolio={returnToPortfolio}
-          onOpenAdmin={openAdmin}
-          settings={settings}
-          onSettingsChange={handleSettingsChange}
-        />
-      );
+      return <AdminDashboard onReturnToPortfolio={returnToMainPortfolio} />;
     }
 
     if (isDemoView) {
-      return <SkillsSphereDemo onReturnToPortfolio={returnToPortfolio} />;
+      return <SkillsSphereDemo onReturnToPortfolio={returnToMainPortfolio} />;
     }
 
+    if (isClassicView) {
+      return (
+        <div className="App">
+          <Navbar
+            onOpenDemo={openDemo}
+            onOpenVasanthPage={returnToMainPortfolio}
+            onOpenAdmin={openAdmin}
+            settings={settings}
+            onSettingsChange={handleSettingsChange}
+            isClassicView={true}
+          />
+          <Home />
+          <About />
+          <Skills settings={settings} onSettingsChange={handleSettingsChange} />
+          <Projects />
+          <GitContributionMap />
+          <Contact />
+          <Footer />
+        </div>
+      );
+    }
+
+    // Default: New Portfolio (VasanthPage) is the Main Portfolio
     return (
-      <div className="App">
-        <Navbar
-          onOpenDemo={openDemo}
-          onOpenVasanthPage={openVasanthPage}
-          onOpenAdmin={openAdmin}
-          settings={settings}
-          onSettingsChange={handleSettingsChange}
-        />
-        <Home />
-        <About />
-        <Skills settings={settings} onSettingsChange={handleSettingsChange} />
-        <Projects />
-        <GitContributionMap />
-        <Contact />
-        <Footer />
-      </div>
+      <VasanthPage
+        onOpenClassicPortfolio={openClassicPortfolio}
+        onOpenAdmin={openAdmin}
+        settings={settings}
+        onSettingsChange={handleSettingsChange}
+      />
     );
   };
 

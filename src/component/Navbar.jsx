@@ -8,6 +8,7 @@ export const DEFAULT_SETTINGS = {
   radiusScale: 1.0,         // 0.8 to 1.3
   autoSpin: true,           // true / false
   dataset: 'standard',      // 'standard', 'portfolio', 'dense'
+  showCanvasLink: false,    // hidden by default until option is toggled visible
 };
 
 export function Navbar({
@@ -15,7 +16,8 @@ export function Navbar({
   onOpenVasanthPage,
   onOpenAdmin,
   settings = DEFAULT_SETTINGS,
-  onSettingsChange
+  onSettingsChange,
+  isClassicView = false
 }) {
   const [showSettings, setShowSettings] = useState(false);
 
@@ -87,10 +89,10 @@ export function Navbar({
                 type="button"
                 className="nav-page-btn"
                 onClick={onOpenVasanthPage}
-                title="Visit the interactive Neo-Brutalist Showcase page"
+                title={isClassicView ? "Return to the main portfolio" : "Visit the interactive showcase"}
               >
                 <Sparkles size={14} />
-                <span>Vasanth's Showcase</span>
+                <span>{isClassicView ? "Main Portfolio" : "Vasanth's Showcase"}</span>
               </button>
             </li>
           )}
