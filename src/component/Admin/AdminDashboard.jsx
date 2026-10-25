@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import './AdminDashboard.css';
+import Profile1 from '../../assets/Profile1.jpg';
 import { usePortfolioData } from '../../context/PortfolioDataContext';
 import { getFirebaseConfig, saveFirebaseConfig, clearFirebaseConfig } from '../../services/firebase';
 import { SkillIcon, BUILT_IN_ICON_KEYS } from '../SkillsSphere/skillAssetIcons.jsx';
@@ -87,6 +88,46 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
     setTimeout(() => setSaveStatus(''), 3500);
   };
 
+  // Helper for responsive canvas-compressed image upload (Base64 data URL)
+  const handleImageUpload = (e, callback) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 12 * 1024 * 1024) {
+      alert('Image file is too large. Please select an image under 12MB.');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const maxDim = 900;
+        let width = img.width;
+        let height = img.height;
+        if (width > height && width > maxDim) {
+          height = Math.round((height * maxDim) / width);
+          width = maxDim;
+        } else if (height > maxDim) {
+          width = Math.round((width * maxDim) / height);
+          height = maxDim;
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        callback(dataUrl);
+        triggerSaveNotification('Photo selected! Click Save to apply.');
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+
   // 1. Profile State
   const [profileForm, setProfileForm] = useState(profile || {});
   const [roleInput, setRoleInput] = useState('');
@@ -97,7 +138,8 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
     aboutBio: profile?.aboutBio || '',
     aboutParas: profile?.aboutParas || [],
     flipCardTitle: profile?.flipCardTitle || '',
-    flipCardBack: profile?.flipCardBack || ''
+    flipCardBack: profile?.flipCardBack || '',
+    avatarUrl: profile?.avatarUrl || ''
   });
   const [paraInput, setParaInput] = useState('');
 
@@ -197,7 +239,8 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
         aboutBio: profile.aboutBio || '',
         aboutParas: profile.aboutParas || [],
         flipCardTitle: profile.flipCardTitle || '',
-        flipCardBack: profile.flipCardBack || ''
+        flipCardBack: profile.flipCardBack || '',
+        avatarUrl: profile.avatarUrl || ''
       });
     }
   }, [profile]);
@@ -1218,6 +1261,76 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
                 </div>
               </div>
 
+                            {/* 3D Flip Card Portrait Photo */}
+              <div className="admin-form-group" style={{ 
+                marginTop: '16px', 
+                padding: '16px', 
+                background: 'rgba(250, 189, 47, 0.05)', 
+                borderRadius: '8px', 
+                border: '1px solid rgba(250, 189, 47, 0.25)' 
+              }}>
+                <label className="admin-label" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#fabd2f' }}>
+                  <Camera size={16} /> 3D Flip Card Portrait Photo
+                </label>
+                <p style={{ fontSize: '12px', color: '#8892b0', margin: '4px 0 14px' }}>
+                  Update your main portrait photo shown on the home page flip card. Upload directly from your device or paste an image URL.
+                </p>
+
+                <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <div style={{ 
+                    width: '84px', 
+                    height: '108px', 
+                    borderRadius: '8px', 
+                    overflow: 'hidden', 
+                    border: '2px solid #fabd2f', 
+                    background: '#1a1c23', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <img 
+                      src={aboutForm.avatarUrl || Profile1} 
+                      alt="Portrait Preview" 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  </div>
+
+                  <div style={{ flex: 1, minWidth: '220px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <input
+                      type="text"
+                      className="admin-input"
+                      placeholder="Paste Image URL (or upload below)"
+                      value={aboutForm.avatarUrl || ''}
+                      onChange={(e) => setAboutForm({ ...aboutForm, avatarUrl: e.target.value })}
+                    />
+
+                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                      <label className="admin-btn admin-btn-primary" style={{ cursor: 'pointer', margin: 0, padding: '7px 14px', fontSize: '12px' }}>
+                        <Upload size={14} /> Upload New Photo
+                        <input
+                          type="file"
+                          accept="image/*"
+                          style={{ display: 'none' }}
+                          onChange={(e) => handleImageUpload(e, (dataUrl) => setAboutForm({ ...aboutForm, avatarUrl: dataUrl }))}
+                        />
+                      </label>
+
+                      {aboutForm.avatarUrl && (
+                        <button
+                          type="button"
+                          className="admin-btn"
+                          style={{ fontSize: '12px', padding: '7px 12px', background: 'transparent', border: '1px solid #bf616a', color: '#bf616a' }}
+                          onClick={() => setAboutForm({ ...aboutForm, avatarUrl: '' })}
+                        >
+                          Reset to Default Photo
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <button type="submit" className="admin-btn admin-btn-primary">
                 <Save size={16} />
                 Save About Details
@@ -1984,14 +2097,43 @@ export default function AdminDashboard({ onReturnToPortfolio }) {
                 </div>
 
                 <div className="admin-form-group">
-                  <label className="admin-label">Project Preview Image URL (Optional)</label>
-                  <input
-                    type="text"
-                    className="admin-input"
-                    placeholder="https://... or /assets/..."
-                    value={projectForm.image}
-                    onChange={(e) => setProjectForm({ ...projectForm, image: e.target.value })}
-                  />
+                  <label className="admin-label">Project Preview Image</label>
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {projectForm.image && (
+                      <img 
+                        src={projectForm.image} 
+                        alt="Project preview" 
+                        style={{ width: '80px', height: '52px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #fabd2f' }} 
+                      />
+                    )}
+                    <input
+                      type="text"
+                      className="admin-input"
+                      style={{ flex: 1, minWidth: '200px' }}
+                      placeholder="https://... or upload from device"
+                      value={projectForm.image}
+                      onChange={(e) => setProjectForm({ ...projectForm, image: e.target.value })}
+                    />
+                    <label className="admin-btn admin-btn-secondary" style={{ cursor: 'pointer', margin: 0, padding: '7px 12px', fontSize: '12px' }}>
+                      <Upload size={14} /> Upload Image
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={(e) => handleImageUpload(e, (dataUrl) => setProjectForm({ ...projectForm, image: dataUrl }))}
+                      />
+                    </label>
+                    {projectForm.image && (
+                      <button
+                        type="button"
+                        className="admin-btn"
+                        style={{ fontSize: '12px', padding: '7px 10px', background: 'transparent', border: '1px solid #bf616a', color: '#bf616a' }}
+                        onClick={() => setProjectForm({ ...projectForm, image: '' })}
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
 

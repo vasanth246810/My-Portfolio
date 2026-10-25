@@ -786,7 +786,7 @@ export default function VasanthPage({
                   <div className="ak-project-visual">
                     <div className="ak-device-frame">
                       <img
-                        src={PROJECT_MOCKUPS[project.id] || project.image || EventifyImg}
+                        src={project.image || PROJECT_MOCKUPS[project.id] || EventifyImg}
                         alt={`${project.title} interface preview`}
                         className="ak-device-img"
                         onError={(e) => {
